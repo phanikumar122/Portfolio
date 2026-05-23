@@ -130,8 +130,8 @@ export const Contact = () => {
               <motion.a
                 key={chan.name}
                 href={chan.href}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={chan.href.startsWith("mailto") ? undefined : "_blank"}
+                rel={chan.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
                 variants={cardVariants}
                 className="group relative flex flex-col justify-between p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-450 dark:hover:border-neutral-700 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
               >

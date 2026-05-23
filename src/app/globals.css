@@ -370,69 +370,126 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   SKEUOMORPHIC HARDWARE UTILITIES
+   SKEUOMORPHIC HARDWARE UTILITIES — 4K CRT MONITOR QUALITY
 ───────────────────────────────────────────────────────────── */
 .crt-screen {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
-/* Subtle scanlines spaced further apart for high-readability and sharpness */
+/* High-density scanlines — thinner lines, finer pitch, better blend */
 .crt-screen::before {
-  content: " ";
+  content: "";
   display: block;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.06) 50%);
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.035) 2px,
+    rgba(0, 0, 0, 0.035) 4px
+  );
   z-index: 20;
-  background-size: 100% 6px;
   pointer-events: none;
-  opacity: 0.85;
+  mix-blend-mode: multiply;
 }
 
+/* Dynamic vignette + subtle screen curvature shadow */
 .crt-screen::after {
-  content: " ";
+  content: "";
   display: block;
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 65%, rgba(0, 0, 0, 0.35) 100%);
+  background:
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(ellipse at 50% 0%, transparent 70%, rgba(0, 0, 0, 0.08) 100%),
+    radial-gradient(ellipse at 50% 100%, transparent 70%, rgba(0, 0, 0, 0.08) 100%);
   z-index: 21;
   pointer-events: none;
   border-radius: inherit;
 }
 
+/* Phosphor glow — subtle green tint bloom on bright areas */
+.crt-screen .crt-phosphor {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.015), transparent 70%);
+  z-index: 19;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Chromatic aberration shift on hover */
+@keyframes aberration {
+  0%, 100% { text-shadow: 0 0 0 transparent, 0 0 0 transparent; }
+  25% { text-shadow: -0.5px 0 rgba(255, 0, 0, 0.15), 0.5px 0 rgba(0, 100, 255, 0.15); }
+  75% { text-shadow: 0.5px 0 rgba(255, 0, 0, 0.15), -0.5px 0 rgba(0, 100, 255, 0.15); }
+}
+
+.crt-aberration {
+  animation: aberration 3s infinite ease-in-out;
+}
+
+/* Sweeping light bar — thinner, softer, with emerald hue */
 @keyframes crt-sweep {
-  0% { top: -20%; }
-  100% { top: 120%; }
+  0% { top: -10%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { top: 110%; opacity: 0; }
 }
 
 .crt-sweep {
   position: absolute;
   left: 0;
   right: 0;
-  height: 12px;
-  background: linear-gradient(to bottom, transparent, rgba(16, 185, 129, 0.06) 50%, transparent);
+  height: 8px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(16, 185, 129, 0.08) 40%,
+    rgba(16, 185, 129, 0.12) 50%,
+    rgba(16, 185, 129, 0.08) 60%,
+    transparent 100%
+  );
   pointer-events: none;
   z-index: 22;
-  animation: crt-sweep 8s infinite linear;
+  animation: crt-sweep 6s infinite ease-in-out;
 }
 
+/* High-frequency flicker — barely perceptible, adds analog warmth */
 @keyframes crt-flicker {
-  0%, 100% { opacity: 0.98; }
-  50% { opacity: 1; }
+  0%, 100% { opacity: 0.97; }
+  10% { opacity: 1; }
+  20% { opacity: 0.98; }
+  40% { opacity: 1; }
+  70% { opacity: 0.97; }
+  90% { opacity: 1; }
 }
 
 .animate-crt-flicker {
-  animation: crt-flicker 0.15s infinite;
+  animation: crt-flicker 0.08s infinite;
 }
 
+/* 4K thermal pulse — layered box-shadows for depth */
 @keyframes thermal-pulse {
-  0%, 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.1), inset 0 0 10px rgba(239, 68, 68, 0.05); }
-  50% { box-shadow: 0 0 35px rgba(239, 68, 68, 0.35), inset 0 0 20px rgba(239, 68, 68, 0.15); }
+  0%, 100% {
+    box-shadow:
+      0 0 8px rgba(239, 68, 68, 0.06),
+      0 0 20px rgba(239, 68, 68, 0.03),
+      inset 0 0 6px rgba(239, 68, 68, 0.03);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(239, 68, 68, 0.15),
+      0 0 40px rgba(239, 68, 68, 0.08),
+      inset 0 0 12px rgba(239, 68, 68, 0.06);
+  }
 }
 
 .animate-thermal-pulse {
-  animation: thermal-pulse 1.2s infinite ease-in-out;
+  animation: thermal-pulse 1.8s infinite ease-in-out;
 }
 
 @keyframes card-slide-in {
@@ -444,14 +501,72 @@
   animation: card-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Premium brushed metal — multi-layer anisotropic reflections */
 .brushed-metal {
-  background-image: 
-    repeating-linear-gradient(120deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 10px),
-    linear-gradient(180deg, var(--card-bg) 0%, var(--color-surface) 100%);
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(255, 255, 255, 0.012) 1px,
+      rgba(255, 255, 255, 0.012) 3px,
+      transparent 3px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      65deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.006) 2px,
+      rgba(255, 255, 255, 0.006) 4px,
+      transparent 4px,
+      transparent 7px
+    ),
+    linear-gradient(165deg, var(--card-bg) 0%, var(--color-surface) 40%, var(--card-bg) 70%, var(--color-surface) 100%);
+}
+
+.dark .brushed-metal {
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(255, 255, 255, 0.008) 1px,
+      rgba(255, 255, 255, 0.008) 3px,
+      transparent 3px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      65deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.004) 2px,
+      rgba(255, 255, 255, 0.004) 4px,
+      transparent 4px,
+      transparent 7px
+    ),
+    linear-gradient(165deg, #1a1a1a 0%, #141414 40%, #1a1a1a 70%, #0f0f0f 100%);
 }
 
 .brushed-metal-dark {
-  background-image: 
-    repeating-linear-gradient(120deg, rgba(255,255,255,0.005) 0px, rgba(255,255,255,0.005) 2px, transparent 2px, transparent 10px),
-    linear-gradient(180deg, #171717 0%, #0d0d0d 100%);
+  background-image:
+    repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(255, 255, 255, 0.006) 1px,
+      rgba(255, 255, 255, 0.006) 3px,
+      transparent 3px,
+      transparent 5px
+    ),
+    repeating-linear-gradient(
+      65deg,
+      transparent 0px,
+      transparent 2px,
+      rgba(255, 255, 255, 0.003) 2px,
+      rgba(255, 255, 255, 0.003) 4px,
+      transparent 4px,
+      transparent 7px
+    ),
+    linear-gradient(165deg, #171717 0%, #0d0d0d 50%, #171717 100%);
 }

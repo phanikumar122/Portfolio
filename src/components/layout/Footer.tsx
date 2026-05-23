@@ -1,27 +1,19 @@
 "use client";
 
-import { Github, Linkedin, Mail, Zap } from "lucide-react";
+import { Zap, Cpu, Code2, Shield } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import { Magnetic } from "@/components/ui/Magnetic";
 
 export const Footer = () => {
-  const socials = [
-    { href: portfolioData.github, icon: <Github className="w-[1.1rem] h-[1.1rem]" />, label: "GitHub" },
-    { href: portfolioData.linkedin, icon: <Linkedin className="w-[1.1rem] h-[1.1rem]" />, label: "LinkedIn" },
-    { href: `mailto:${portfolioData.email}`, icon: <Mail className="w-[1.1rem] h-[1.1rem]" />, label: "Email" },
-  ];
-
   return (
     <footer
       className="py-14 sm:py-20 relative overflow-hidden"
       style={{ borderTop: "1px solid var(--color-border)" }}
     >
-      {/* Subtle glow */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-40 pointer-events-none"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-48 pointer-events-none"
         style={{
           background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 70%)",
-          filter: "blur(40px)",
+          filter: "blur(50px)",
         }}
       />
 
@@ -49,52 +41,41 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-2">
-            {socials.map((s) => (
-              <Magnetic key={s.label} strength={0.35}>
-                <a
-                  href={s.href}
-                  target={s.href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center transition-all duration-300 block"
-                  style={{
-                    background: "var(--color-surface)",
-                    border: "1px solid var(--color-border)",
-                    color: "var(--color-text-muted)",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.color = "var(--color-primary)";
-                    el.style.borderColor = "var(--color-primary-mid)";
-                    el.style.boxShadow = "0 0 20px var(--color-glow)";
-                    el.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.color = "var(--color-text-muted)";
-                    el.style.borderColor = "var(--color-border)";
-                    el.style.boxShadow = "none";
-                    el.style.transform = "translateY(0)";
-                  }}
-                >
-                  {s.icon}
-                </a>
-              </Magnetic>
-            ))}
+          {/* Skeuomorphic About Card */}
+          <div className="crt-screen brushed-metal rounded-xl p-4 sm:p-5 max-w-xs w-full group/card" style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", boxShadow: "0 4px 24px var(--color-glow)" }}>
+            <div className="crt-phosphor" />
+            <div className="crt-sweep" />
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-glow-pulse" />
+              <span className="text-[8px] font-mono font-bold uppercase tracking-widest animate-crt-flicker crt-aberration" style={{ color: "var(--color-text-muted)" }}>SYS::PROFILE</span>
+              <div className="ml-auto flex gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+                <span className="w-1.5 h-1.5 rounded-full bg-neutral-300 dark:bg-neutral-700" />
+              </div>
+            </div>
+            <p className="text-xs leading-relaxed font-medium" style={{ color: "var(--color-text)" }}>
+              {portfolioData.description}
+            </p>
+            <div className="flex items-center gap-3 mt-3 pt-3" style={{ borderTop: "1px solid var(--color-border)" }}>
+              {[Cpu, Code2, Shield].map((Icon, i) => (
+                <div key={i} className="flex items-center gap-1.5 text-[9px] font-mono font-bold animate-thermal-pulse" style={{ color: "var(--color-text-muted)", animationDelay: `${i * 0.3}s` }}>
+                  <Icon className="w-3 h-3 group-hover/card:scale-110 transition-transform" />
+                  <span>{["7+ Projects", "4 Stacks", "6 Certs"][i]}</span>
+                </div>
+              ))}
+            </div>
+            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-3/4 h-px opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" style={{ background: "linear-gradient(90deg, transparent, var(--color-primary), transparent)" }} />
           </div>
         </div>
 
-        {/* Divider */}
         <div
           className="w-full h-px"
           style={{ background: "linear-gradient(90deg, transparent, var(--color-border), transparent)" }}
         />
 
-        {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-[11px] font-semibold uppercase tracking-[0.18em]" style={{ color: "var(--color-text-muted)" }}>
-          <p style={{ opacity: 0.6 }}>© {new Date().getFullYear()} Phani Kumar. All rights reserved.</p>
+          <p style={{ opacity: 0.6 }}>&copy; {new Date().getFullYear()} Phani Kumar. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Mail, FileText, Sparkles, MapPin } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import { Magnetic } from "@/components/ui/Magnetic";
 import { TextScramble } from "@/components/ui/TextScramble";
 
 const FloatingOrb = ({
@@ -131,73 +130,67 @@ export const Hero = () => {
               transition={{ duration: 1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto"
             >
-              <Magnetic strength={0.25}>
-                <a
-                  href="#projects"
-                  className="group flex items-center justify-center gap-2.5 px-7 sm:px-9 rounded-2xl font-bold uppercase tracking-widest text-[11px] sm:text-xs transition-all duration-400 block"
-                  style={{
-                    background: "var(--color-primary)",
-                    color: "var(--color-bg)",
-                    boxShadow: "0 4px 16px var(--color-glow)",
-                    height: "3.25rem",
-                    width: "100%",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.background = "var(--color-primary-mid)";
-                    el.style.boxShadow = "0 8px 24px var(--color-glow-strong)";
-                    el.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.background = "var(--color-primary)";
-                    el.style.boxShadow = "0 4px 16px var(--color-glow)";
-                    el.style.transform = "translateY(0)";
-                  }}
-                >
-                  Explore Work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-              </Magnetic>
+              <a
+                href="#projects"
+                className="group flex items-center justify-center gap-2.5 px-7 sm:px-9 rounded-2xl font-bold uppercase tracking-widest text-[11px] sm:text-xs transition-all duration-400 block"
+                style={{
+                  background: "var(--color-primary)",
+                  color: "var(--color-bg)",
+                  boxShadow: "0 4px 16px var(--color-glow)",
+                  height: "3.25rem",
+                  width: "100%",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "var(--color-primary-mid)";
+                  el.style.boxShadow = "0 8px 24px var(--color-glow-strong)";
+                  el.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = "var(--color-primary)";
+                  el.style.boxShadow = "0 4px 16px var(--color-glow)";
+                  el.style.transform = "translateY(0)";
+                }}
+              >
+                Explore Work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
 
-              <Magnetic strength={0.25}>
-                <a
-                  href="#contact"
-                  className="group flex items-center justify-center gap-2.5 px-7 sm:px-9 rounded-2xl font-bold uppercase tracking-widest text-[11px] sm:text-xs transition-all duration-400 block"
-                  style={{
-                    background: "var(--color-surface)",
-                    border: "1px solid var(--color-border)",
-                    color: "var(--color-text)",
-                    height: "3.25rem",
-                    width: "100%",
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "var(--color-text)";
-                    el.style.transform = "translateY(-2px)";
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement;
-                    el.style.borderColor = "var(--color-border)";
-                    el.style.transform = "translateY(0)";
-                  }}
-                >
-                  <Mail className="w-4 h-4" /> Get In Touch
-                </a>
-              </Magnetic>
+              <a
+                href="#contact"
+                className="group flex items-center justify-center gap-2.5 px-7 sm:px-9 rounded-2xl font-bold uppercase tracking-widest text-[11px] sm:text-xs transition-all duration-400 block"
+                style={{
+                  background: "var(--color-surface)",
+                  border: "1px solid var(--color-border)",
+                  color: "var(--color-text)",
+                  height: "3.25rem",
+                  width: "100%",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "var(--color-text)";
+                  el.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.borderColor = "var(--color-border)";
+                  el.style.transform = "translateY(0)";
+                }}
+              >
+                <Mail className="w-4 h-4" /> Get In Touch
+              </a>
 
-              <Magnetic strength={0.25}>
-                <a
-                  href={portfolioData.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-2.5 px-7 sm:px-9 rounded-2xl font-bold uppercase tracking-widest text-[11px] sm:text-xs transition-all duration-400 block animate-ease"
-                  style={{ color: "var(--color-text-muted)", height: "3.25rem" }}
-                  onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "var(--color-text)"; el.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "var(--color-text-muted)"; el.style.transform = "translateY(0)"; }}
-                >
-                  <FileText className="w-4 h-4" /> Resume
-                </a>
-              </Magnetic>
+              <a
+                href={portfolioData.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-2.5 px-7 sm:px-9 rounded-2xl font-bold uppercase tracking-widest text-[11px] sm:text-xs transition-all duration-400 block animate-ease"
+                style={{ color: "var(--color-text-muted)", height: "3.25rem" }}
+                onMouseEnter={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "var(--color-text)"; el.style.transform = "translateY(-2px)"; }}
+                onMouseLeave={(e) => { const el = e.currentTarget as HTMLElement; el.style.color = "var(--color-text-muted)"; el.style.transform = "translateY(0)"; }}
+              >
+                <FileText className="w-4 h-4" /> Resume
+              </a>
             </motion.div>
 
             {/* Stats row */}
@@ -209,8 +202,8 @@ export const Hero = () => {
               style={{ gap: "0" }}
             >
               {[
-                { value: "12+", label: "Projects" },
-                { value: "4+", label: "Tech Stacks" },
+                { value: `${portfolioData.projects.length}+`, label: "Projects" },
+                { value: `${portfolioData.skills.length}+`, label: "Tech Stacks" },
               ].map((stat, i) => (
                 <div key={stat.label} className="flex items-center">
                   <div className="flex flex-col items-center lg:items-start px-4 sm:px-5 first:pl-0">
@@ -252,7 +245,7 @@ export const Hero = () => {
             <div
               className="relative"
               style={{
-                width: "clamp(200px, 80vw, 400px)",
+                width: "clamp(180px, 60vw, 320px)",
                 paddingTop: "1.5rem",
                 paddingBottom: "1.5rem",
               }}
@@ -298,8 +291,8 @@ export const Hero = () => {
                 className="relative rounded-3xl overflow-hidden profile-container transition-transform duration-200 ease-out mx-auto"
                 style={{
                   width: "100%",
-                  maxWidth: "340px",
-                  height: "clamp(280px, 80vw, 460px)",
+                  maxWidth: "280px",
+                  height: "clamp(240px, 60vw, 360px)",
                   border: "1px solid var(--color-border)",
                   boxShadow: "0 20px 60px rgba(0,0,0,0.25), 0 0 80px var(--color-glow)",
                   background: "var(--color-surface)",

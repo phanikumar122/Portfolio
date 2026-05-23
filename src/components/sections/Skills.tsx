@@ -231,6 +231,37 @@ const SecurityIcon = ({ className, style }: { className?: string; style?: React.
 );
 
 // ─────────────────────────────────────────────────────────────
+// CATEGORIES
+// ─────────────────────────────────────────────────────────────
+
+const SKILL_CATEGORIES: { title: string; skills: string[] }[] = [
+  {
+    title: "Languages",
+    skills: ["Core JS", "Python", "Json"],
+  },
+  {
+    title: "Frameworks & Mobile",
+    skills: ["Flutter", "Android SDK"],
+  },
+  {
+    title: "Tools & Platforms",
+    skills: ["Git", "Android Studio", "Linux", "Operating Systems", "Virtual Machines", "Computer Networking"],
+  },
+  {
+    title: "Databases",
+    skills: ["MySQL", "MongoDB"],
+  },
+  {
+    title: "Architecture & Security",
+    skills: ["Microservices", "3-Tier Architecture", "Real-time Systems", "Security", "JSON Web Token (JWT)", "Api Testing"],
+  },
+  {
+    title: "Deployment & DevOps",
+    skills: ["Infrastructure as Code", "Containerization", "Automated Pipelines"],
+  },
+];
+
+// ─────────────────────────────────────────────────────────────
 // CONFIG & DATA
 // ─────────────────────────────────────────────────────────────
 
@@ -289,8 +320,6 @@ const SKILL_COLORS: Record<string, string> = {
   "Security": "#EF4444",
 };
 
-const ALL_SKILLS = Object.keys(SKILL_ICONS);
-
 export const Skills = () => {
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
@@ -322,7 +351,6 @@ export const Skills = () => {
       className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
       style={{ backgroundColor: "var(--color-surface)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}
     >
-      {/* Background Subtle Blobs */}
       <div className="absolute left-0 top-1/3 pointer-events-none" style={{ width: "clamp(150px,30vw,350px)", height: "clamp(150px,30vw,350px)", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(60px)" }} />
       <div className="absolute right-0 bottom-1/3 pointer-events-none" style={{ width: "clamp(120px,25vw,300px)", height: "clamp(120px,25vw,300px)", background: "radial-gradient(ellipse, var(--blob-2) 0%, transparent 65%)", filter: "blur(50px)" }} />
 
@@ -348,50 +376,72 @@ export const Skills = () => {
             </p>
           </div>
 
-          {/* Flat Grid of Skills */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-5"
-          >
-            {ALL_SKILLS.map((skill) => {
-              const Icon = SKILL_ICONS[skill];
-              const brandColor = SKILL_COLORS[skill] || "var(--color-text)";
-              const isHovered = hoveredSkill === skill;
-
-              return (
+          {/* Categorized Sections */}
+          <div className="flex flex-col gap-8 sm:gap-10">
+            {SKILL_CATEGORIES.map((cat) => (
+              <div key={cat.title}>
+                {/* Category Header — IDE-style panel bar */}
                 <motion.div
-                  key={skill}
-                  variants={itemVariants}
-                  onMouseEnter={() => setHoveredSkill(skill)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                  className="group/item flex items-center gap-3 p-4 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden bg-white dark:bg-neutral-950"
-                  style={{
-                    borderColor: isHovered ? brandColor : "var(--color-border)",
-                    boxShadow: isHovered
-                      ? `0 10px 25px -10px ${brandColor}33, 0 0 0 1px ${brandColor}30`
-                      : "none",
-                    transform: isHovered ? "translateY(-3px)" : "none"
-                  }}
+                  initial={{ opacity: 0, y: -6 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  className="flex items-center gap-3 mb-3 sm:mb-4"
                 >
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover/item:scale-105 shrink-0"
-                    style={{
-                      backgroundColor: `${brandColor}12`,
-                      border: `1px solid ${brandColor}20`
-                    }}
-                  >
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <span className="text-xs sm:text-sm font-bold tracking-wide text-neutral-800 dark:text-neutral-200 uppercase leading-tight">
-                    {skill}
+                  <div className="w-1 h-5 rounded-full shrink-0" style={{ background: "var(--color-primary)" }} />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em]" style={{ color: "var(--color-text)" }}>
+                    {cat.title}
                   </span>
+                  <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, var(--color-border), transparent)" }} />
                 </motion.div>
-              );
-            })}
-          </motion.div>
+
+                {/* Skills Grid — auto-fill responsive */}
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  className="flex flex-wrap gap-2 sm:gap-3"
+                >
+                  {cat.skills.map((skill) => {
+                    const Icon = SKILL_ICONS[skill];
+                    const brandColor = SKILL_COLORS[skill] || "var(--color-text)";
+                    const isHovered = hoveredSkill === skill;
+
+                    return (
+                      <motion.div
+                        key={skill}
+                        variants={itemVariants}
+                        onMouseEnter={() => setHoveredSkill(skill)}
+                        onMouseLeave={() => setHoveredSkill(null)}
+                        className="flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition-all duration-300 cursor-pointer bg-white dark:bg-neutral-950"
+                        style={{
+                          borderColor: isHovered ? brandColor : "var(--color-border)",
+                          boxShadow: isHovered
+                            ? `0 8px 20px -8px ${brandColor}33, 0 0 0 1px ${brandColor}30`
+                            : "none",
+                          transform: isHovered ? "translateY(-2px) scale(1.02)" : "none"
+                        }}
+                      >
+                        <div
+                          className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-transform duration-300 shrink-0"
+                          style={{
+                            backgroundColor: `${brandColor}12`,
+                            border: `1px solid ${brandColor}20`
+                          }}
+                        >
+                          <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                        </div>
+                        <span className="text-[10px] sm:text-xs font-bold tracking-wide text-neutral-800 dark:text-neutral-200 uppercase leading-tight">
+                          {skill}
+                        </span>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
+              </div>
+            ))}
+          </div>
 
         </div>
       </div>

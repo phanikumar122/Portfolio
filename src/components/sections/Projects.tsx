@@ -35,7 +35,7 @@ export const Projects = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {portfolioData.projects.map((project, idx) => (
-              <ProjectCard key={project.title} project={project} idx={idx} />
+              <ProjectCard key={project.id} project={project} idx={idx} />
             ))}
           </div>
         </div>

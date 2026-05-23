@@ -7,8 +7,14 @@ export const LoadingScreen = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setLoading(false), 2200);
-    return () => clearTimeout(t);
+    const isComplete = document.readyState === "complete";
+    const t = setTimeout(() => setLoading(false), isComplete ? 400 : 2200);
+    const onLoad = () => setLoading(false);
+    if (!isComplete) window.addEventListener("load", onLoad);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("load", onLoad);
+    };
   }, []);
 
   return (
