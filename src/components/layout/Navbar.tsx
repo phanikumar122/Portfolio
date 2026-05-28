@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github, Sun, Moon } from "lucide-react";
+import { Menu, X, Github } from "lucide-react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { portfolioData } from "@/data/portfolio";
 
 const navLinks = [
@@ -19,8 +18,8 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, setTheme }     = useTheme();
   const [mounted, setMounted]   = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
     setTimeout(() => setMounted(true), 0);
@@ -30,11 +29,42 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-30% 0px -60% 0px",
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          setActiveSection(id === "home" ? "about" : id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const sectionIds = ["home", "about", "skills", "projects", "hackathons", "certificates", "contact"];
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-saas"
       style={{
-        padding: scrolled ? "0.6rem 0" : "1.25rem 0",
+        padding: scrolled ? "0.75rem 0" : "1.4rem 0",
         background: scrolled ? "var(--nav-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
@@ -42,7 +72,7 @@ export const Navbar = () => {
         boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.08)" : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between" style={{ paddingLeft: "max(1rem, env(safe-area-inset-left))", paddingRight: "max(1rem, env(safe-area-inset-right))" }}>
 
         {/* ── Logo ── */}
         <a href="#home" className="flex items-baseline gap-1 select-none">
@@ -50,7 +80,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg sm:text-2xl font-bold tracking-tight"
+            className="text-xl sm:text-3xl font-bold tracking-tight"
             style={{ color: "var(--color-text)" }}
           >
             Phani
@@ -59,7 +89,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg sm:text-2xl font-bold tracking-tight italic"
+            className="text-xl sm:text-3xl font-bold tracking-tight italic"
             style={{ color: "var(--color-text)" }}
           >
             Kumar.
@@ -68,62 +98,50 @@ export const Navbar = () => {
 
         {/* ── Desktop Nav ── */}
         <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((item, i) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <Link
-                href={item.href}
-                className="relative text-[13px] font-semibold tracking-wide px-4 py-2 rounded-lg transition-all duration-300 block"
-                style={{ color: "var(--color-text-muted)" }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.color = "var(--color-primary)";
-                  el.style.background = "var(--color-surface)";
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLAnchorElement;
-                  el.style.color = "var(--color-text-muted)";
-                  el.style.background = "transparent";
-                }}
+          {navLinks.map((item, i) => {
+            const isActive = activeSection === item.href.slice(1);
+            return (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
               >
-                {item.name}
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={item.href}
+                  className="relative text-[15px] font-semibold tracking-wide px-5 py-2.5 rounded-lg transition-all duration-305 block select-none"
+                  style={{
+                    color: isActive ? "var(--color-primary)" : "var(--color-text-muted)",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.color = "var(--color-primary)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    if (!isActive) el.style.color = "var(--color-text-muted)";
+                  }}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeNavPill"
+                      className="absolute inset-0 rounded-lg -z-10"
+                      style={{
+                        background: "var(--color-surface)",
+                        border: "1px solid var(--color-border)",
+                        boxShadow: "0 2px 8px var(--color-glow)",
+                      }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {item.name}
+                </Link>
+              </motion.div>
+            );
+          })}
 
           {/* Icons group */}
           <div className="ml-4 flex items-center gap-2 pl-4" style={{ borderLeft: "1px solid var(--color-border)" }}>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              aria-label="Toggle theme"
-              className="w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-300 cursor-pointer"
-              style={{ color: "var(--color-text-muted)" }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLButtonElement;
-                el.style.color = "var(--color-primary)";
-                el.style.background = "var(--color-surface)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLButtonElement;
-                el.style.color = "var(--color-text-muted)";
-                el.style.background = "transparent";
-              }}
-            >
-              <motion.div
-                key={theme}
-                initial={{ rotate: -45, scale: 0.8, opacity: 0 }}
-                animate={{ rotate: 0, scale: 1, opacity: 1 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-              >
-                {!mounted || theme === "dark" ? <Sun className="w-[1.1rem] h-[1.1rem]" /> : <Moon className="w-[1.1rem] h-[1.1rem]" />}
-              </motion.div>
-            </button>
 
             {/* GitHub */}
             <a
@@ -131,7 +149,7 @@ export const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-300 block"
+              className="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 block"
               style={{ color: "var(--color-text-muted)" }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
@@ -144,12 +162,12 @@ export const Navbar = () => {
                 el.style.background = "transparent";
               }}
             >
-              <Github className="w-[1.1rem] h-[1.1rem]" />
+              <Github className="w-5 h-5" />
             </a>
 
             <a
               href="#contact"
-              className="ml-1 px-5 py-2 rounded-xl text-[12px] font-bold tracking-wider transition-all duration-300 block"
+              className="ml-1 px-6 py-2.5 rounded-xl text-[14px] font-bold tracking-wider transition-all duration-300 block"
               style={{
                 background: "var(--color-primary)",
                 color: "var(--color-bg)",
@@ -176,29 +194,17 @@ export const Navbar = () => {
         {/* ── Mobile: icons + hamburger ── */}
         <div className="md:hidden flex items-center gap-2">
 
-          {/* Theme Toggle */}
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            aria-label="Toggle theme"
-            className="w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200"
-            style={{
-              color: "var(--color-primary)",
-              background: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
-            }}
-          >
-            {!mounted || theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
-
           {/* Hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
-            className="w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200"
+            className="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200"
             style={{
               color: "var(--color-primary)",
               background: "var(--color-surface)",
               border: "1px solid var(--color-border)",
+              minWidth: "44px",
+              minHeight: "44px",
             }}
           >
             {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
@@ -223,22 +229,36 @@ export const Navbar = () => {
             }}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col gap-3">
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.name}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 }}
-                  onClick={() => setIsOpen(false)}
-                  className="text-2xl sm:text-3xl font-bold tracking-tighter py-1 transition-colors duration-200"
-                  style={{ color: "var(--color-text)" }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-primary)"; }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "var(--color-text)"; }}
-                >
-                  {link.name}
-                </motion.a>
-              ))}
+              {navLinks.map((link, i) => {
+                const isActive = activeSection === link.href.slice(1);
+                return (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 }}
+                    onClick={() => setIsOpen(false)}
+                    className="text-2xl sm:text-3xl font-bold tracking-tighter py-1 transition-colors duration-200"
+                    style={{
+                      color: isActive ? "var(--color-primary)" : "var(--color-text)",
+                      opacity: isActive ? 1 : 0.6
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.color = "var(--color-primary)";
+                      el.style.opacity = "1";
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.color = isActive ? "var(--color-primary)" : "var(--color-text)";
+                      el.style.opacity = isActive ? "1" : "0.6";
+                    }}
+                  >
+                    {link.name}
+                  </motion.a>
+                );
+              })}
 
               <div className="pt-6 mt-2 flex items-center gap-3" style={{ borderTop: "1px solid var(--color-border)" }}>
                 <a

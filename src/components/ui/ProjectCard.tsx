@@ -19,33 +19,42 @@ interface ProjectCardProps {
 }
 
 // ── EduConnect Micro-UI ──
-const EduConnectMock = () => (
-  <div className="w-full h-full flex flex-col gap-3 p-4 justify-center select-none">
-    <div className="flex justify-between items-center bg-[var(--card-bg)] p-2.5 rounded-xl border border-[var(--color-border)] shadow-sm">
-      <div className="flex items-center gap-2">
-        <div className="w-5 h-5 rounded-full bg-[var(--color-primary)] opacity-10 flex items-center justify-center font-bold text-[8px] text-[var(--color-primary)]">T</div>
-        <div className="leading-none">
-          <div className="text-[9px] font-bold">Teacher Portal</div>
-          <div className="text-[6px] text-[var(--color-text-muted)]">Grade 10B</div>
+const EduConnectMock = () => {
+  const subjects = [
+    { name: "Maths", score: 85 },
+    { name: "Physics", score: 95 },
+    { name: "Chemistry", score: 75 },
+    { name: "Social", score: 90 },
+  ];
+
+  return (
+    <div className="w-full h-full flex flex-col gap-3 p-4 justify-center select-none">
+      <div className="flex justify-between items-center bg-[var(--card-bg)] p-2.5 rounded-xl border border-[var(--color-border)] shadow-sm">
+        <div className="flex items-center gap-2">
+          <div className="w-5 h-5 rounded-full bg-[var(--color-primary)] opacity-10 flex items-center justify-center font-bold text-[8px] text-[var(--color-primary)]">T</div>
+          <div className="leading-none">
+            <div className="text-[9px] font-bold">Teacher Portal</div>
+            <div className="text-[6px] text-[var(--color-text-muted)]">Grade 10B</div>
+          </div>
         </div>
+        <div className="text-[10px] font-mono font-bold text-emerald-500">86.2% Avg</div>
       </div>
-      <div className="text-[10px] font-mono font-bold text-emerald-500">92.4% Avg</div>
+      <div className="grid grid-cols-4 gap-3 items-end h-16 px-2">
+        {subjects.map((sub, i) => (
+          <div key={sub.name} className="flex flex-col items-center justify-end gap-1 w-full h-full">
+            <motion.div
+              initial={{ height: 0 }}
+              animate={{ height: `${sub.score}%` }}
+              transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.5 + i * 0.2, ease: "easeInOut" }}
+              className="w-full bg-[var(--color-primary)] rounded-t-sm opacity-20 group-hover:opacity-60 transition-opacity"
+            />
+            <span className="text-[6px] font-mono font-extrabold opacity-60 uppercase tracking-tighter truncate max-w-full text-center">{sub.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
-    <div className="grid grid-cols-5 gap-2 items-end h-16 px-2">
-      {[65, 85, 95, 75, 90].map((h, i) => (
-        <div key={i} className="flex flex-col items-center gap-1 w-full">
-          <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: `${h}%` }}
-            transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.5 + i * 0.2, ease: "easeInOut" }}
-            className="w-full bg-[var(--color-primary)] rounded-t-sm opacity-20 group-hover:opacity-60 transition-opacity"
-          />
-          <span className="text-[6px] font-mono opacity-50">M{i+1}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 // ── SkillTern Micro-UI ──
 const SkillTernMock = () => (
@@ -141,35 +150,134 @@ const SyllabiAIMock = () => (
 );
 
 // ── TruthLens Micro-UI ──
-const TruthLensMock = () => (
-  <div className="w-full h-full flex items-center justify-center p-4 relative overflow-hidden select-none">
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-500/5 to-transparent pointer-events-none animate-pulse" />
-    <div className="flex flex-col items-center gap-1.5 z-10 w-full max-w-[170px]">
-      <div className="flex justify-between w-full text-[6px] font-mono opacity-50">
-        <span>DETECTING: IP_STREAM</span>
-        <span className="text-red-500 font-bold">ANALYZING</span>
-      </div>
-      
-      <div className="relative w-full bg-[var(--card-bg)] border border-[var(--color-border)] rounded-xl p-2.5 shadow-sm flex items-center justify-between">
-        <div className="space-y-0.5">
-          <div className="text-[8px] font-bold">Truth Check</div>
-          <div className="text-[5px] font-mono text-[var(--color-text-muted)]">Classifier: RoBERTa</div>
+const TruthLensMock = () => {
+  return (
+    <div className="w-full h-full flex items-center justify-center p-3 select-none">
+      {/* Skeuomorphic Gauge Case */}
+      <div 
+        className="w-full max-w-[210px] rounded-xl border border-neutral-800 p-3 shadow-[inset_0_2px_4px_rgba(255,255,255,0.05),0_10px_20px_rgba(0,0,0,0.5)] relative overflow-hidden"
+        style={{
+          background: "linear-gradient(135deg, #181818 0%, #0d0d0d 100%)",
+        }}
+      >
+        {/* CRT Scanline and Glass Glare */}
+        <div className="absolute inset-0 pointer-events-none z-30 opacity-15"
+          style={{
+            backgroundImage: "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%, transparent 100%)",
+          }}
+        />
+        <div className="absolute inset-0 pointer-events-none z-20 opacity-5 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#fff_2px,#fff_4px)]" />
+
+        {/* Top Status Bar */}
+        <div className="flex justify-between items-center text-[5px] font-mono mb-2 tracking-widest text-neutral-500">
+          <span>MODULE::LENS_V1.2</span>
+          <div className="flex items-center gap-1">
+            <span className="text-[5px]">SYS_LOCK</span>
+            <motion.span 
+              animate={{ opacity: [0.3, 1, 0.3] }} 
+              transition={{ repeat: Infinity, duration: 1.2 }}
+              className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_4px_#10b981]"
+            />
+          </div>
         </div>
-        
-        <div className="flex flex-col items-end">
-          <motion.span
-            animate={{ color: ["#ef4444", "#22c55e", "#ef4444"] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="text-[10px] font-mono font-bold"
-          >
-            99.2%
-          </motion.span>
-          <span className="text-[5px] font-bold tracking-widest uppercase opacity-75">AUTHENTIC</span>
+
+        {/* Gauge Background Face */}
+        <div 
+          className="relative h-20 rounded-lg border border-neutral-900 bg-[#070707] flex flex-col items-center justify-center overflow-hidden"
+        >
+          {/* Dial Arc Line */}
+          <svg className="w-32 h-16 absolute top-2" viewBox="0 0 100 50">
+            {/* Background Arc */}
+            <path 
+              d="M 10 45 A 40 40 0 0 1 90 45" 
+              fill="none" 
+              stroke="#222" 
+              strokeWidth="4" 
+              strokeLinecap="round"
+            />
+            {/* Status Zones */}
+            {/* Red zone (Fake) */}
+            <path 
+              d="M 10 45 A 40 40 0 0 1 35 22" 
+              fill="none" 
+              stroke="#ef4444" 
+              strokeWidth="2.5" 
+              opacity="0.6"
+            />
+            {/* Yellow zone (Suspect) */}
+            <path 
+              d="M 35 22 A 40 40 0 0 1 65 22" 
+              fill="none" 
+              stroke="#f59e0b" 
+              strokeWidth="2.5" 
+              opacity="0.6"
+            />
+            {/* Green zone (Authentic) */}
+            <path 
+              d="M 65 22 A 40 40 0 0 1 90 45" 
+              fill="none" 
+              stroke="#10b981" 
+              strokeWidth="2.5" 
+              opacity="0.8"
+            />
+          </svg>
+
+          {/* Scale Labels */}
+          <div className="absolute top-8 left-4 text-[5px] font-mono text-red-500 font-bold">FAKE</div>
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 text-[5px] font-mono text-amber-500 font-bold">SCANNING</div>
+          <div className="absolute top-8 right-3 text-[5px] font-mono text-emerald-500 font-bold">REAL</div>
+
+          {/* Needle Base (Pivot Point) */}
+          <div className="absolute bottom-0 w-4 h-4 rounded-full bg-neutral-800 border border-neutral-700 z-10 flex items-center justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-neutral-600" />
+          </div>
+
+          {/* Animating Needle */}
+          <motion.div 
+            animate={{ 
+              rotate: [-60, 45, -20, 60, 56, 62, 59, 60, 60] 
+            }}
+            transition={{ 
+              duration: 4.5, 
+              repeat: Infinity, 
+              repeatDelay: 2,
+              ease: "easeInOut"
+            }}
+            className="absolute bottom-2 w-0.5 h-14 bg-red-500 origin-bottom rounded-full shadow-[0_0_3px_rgba(239,68,68,0.5)]"
+            style={{
+              transformOrigin: "bottom center",
+            }}
+          />
+
+          {/* Digital Output Overlay */}
+          <div className="absolute bottom-1 w-full px-3 flex justify-between items-center z-10">
+            <span className="text-[6px] font-mono text-neutral-600">ROBERTa::CLASSIFIER</span>
+            <motion.div 
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+              className="text-[8px] font-mono font-bold text-emerald-400 bg-emerald-950/30 px-1 py-0.5 rounded border border-emerald-900/30"
+            >
+              99.2% AUTH
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Bottom hardware detail panel */}
+        <div className="mt-2 flex justify-between items-center text-[5px] font-mono text-neutral-500 px-1">
+          <div className="flex gap-1">
+            <span className="w-1 h-1 bg-neutral-800 rounded-full" />
+            <span className="w-1 h-1 bg-neutral-800 rounded-full" />
+          </div>
+          <span>ANALYSIS_MATRIX_VERIFIED</span>
+          <div className="flex gap-1">
+            <span className="w-1 h-1 bg-neutral-800 rounded-full" />
+            <span className="w-1 h-1 bg-neutral-800 rounded-full" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 // ── Decentralized Network Micro-UI ──
 const DecentralizedNetworkMock = () => (
@@ -259,7 +367,7 @@ const SmartHandRehabMock = () => {
           <div className="text-[6px] font-mono mb-2 tracking-widest" style={{ color: "#00ff8855" }}>FLEX SENSOR MATRIX</div>
           <div className="flex items-end gap-2 h-12">
             {fingers.map((f, i) => (
-              <div key={i} className="flex flex-col items-center gap-0.5 flex-1">
+              <div key={i} className="flex flex-col items-center justify-end gap-0.5 flex-1 h-full">
                 <motion.div
                   initial={{ height: 0 }}
                   animate={{ height: `${f.value}%` }}
@@ -308,6 +416,20 @@ export const ProjectCard = ({ project, idx }: ProjectCardProps) => {
 
     setMouseX(mouseXPos);
     setMouseY(mouseYPos);
+
+    const x = mouseXPos / rect.width - 0.5;
+    const y = mouseYPos / rect.height - 0.5;
+    const el = cardRef.current.querySelector(".project-card-inner") as HTMLElement;
+    if (el) {
+      el.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const el = cardRef.current?.querySelector(".project-card-inner") as HTMLElement;
+    if (el) {
+      el.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+    }
   };
 
   const renderMicroUI = () => {
@@ -335,14 +457,18 @@ export const ProjectCard = ({ project, idx }: ProjectCardProps) => {
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative overflow-hidden rounded-[1.5rem] transition-all duration-500"
+      className="group relative overflow-visible rounded-[1.5rem]"
     >
       <div
-        className="w-full h-full p-0 transition-all duration-500 bg-[var(--color-surface)] border border-[var(--color-border)] group-hover:bg-[var(--card-bg)] group-hover:border-[var(--color-primary)] group-hover:shadow-[0_16px_48px_rgba(var(--color-primary-rgb),0.06)] rounded-[1.5rem]"
+        className="project-card-inner w-full h-full p-0 transition-all duration-300 ease-out bg-[var(--color-surface)] border border-[var(--color-border)] group-hover:bg-[var(--card-bg)] group-hover:border-[var(--color-primary)] group-hover:shadow-[0_16px_48px_rgba(var(--color-primary-rgb),0.06)] rounded-[1.5rem] overflow-hidden"
+        style={{
+          transformStyle: "preserve-3d",
+        }}
       >
         {/* Spotlight Overlay */}
         <div 
@@ -356,7 +482,7 @@ export const ProjectCard = ({ project, idx }: ProjectCardProps) => {
         <div
           className="relative flex flex-col justify-start items-stretch overflow-hidden"
           style={{
-            height: "220px",
+            height: "clamp(180px, 50vw, 220px)",
             background: "linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 50%, var(--color-surface) 100%)",
             borderBottom: "1px solid var(--color-border)",
             transform: "translateZ(20px)",
@@ -374,11 +500,7 @@ export const ProjectCard = ({ project, idx }: ProjectCardProps) => {
             </div>
           </div>
 
-          {/* Grid pattern overlay */}
-          <div
-            className="absolute inset-0 top-9 opacity-40 pointer-events-none"
-            style={{ backgroundImage: "linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px)", backgroundSize: "24px 24px" }}
-          />
+          {/* Grid pattern overlay - removed */}
 
           {/* Dynamic Micro UI */}
           <div className="flex-1 relative z-0">
@@ -387,7 +509,7 @@ export const ProjectCard = ({ project, idx }: ProjectCardProps) => {
         </div>
 
         {/* Card Content & Text */}
-        <div className="p-8 lg:p-10" style={{ transform: "translateZ(30px)" }}>
+        <div className="p-5 sm:p-8 lg:p-10" style={{ transform: "translateZ(30px)" }}>
           <h3 className="text-xl sm:text-2xl font-bold tracking-tight mb-3" style={{ color: "var(--color-text)" }}>
             {project.title}
           </h3>

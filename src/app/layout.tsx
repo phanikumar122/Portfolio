@@ -29,6 +29,12 @@ export const metadata: Metadata = {
   title: "Phani Kumar | Portfolio",
   description:
     "Technical Engineer & Creative Developer — Building high-performance digital products.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
+  },
+  themeColor: "#0A0A0A",
 };
 
 export default function RootLayout({
@@ -44,7 +50,8 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
+          forcedTheme="dark"
           enableSystem={false}
         >
           <SmoothScroll>

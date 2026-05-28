@@ -3,6 +3,27 @@
 import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { MaskText } from "@/components/ui/MaskText";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { 
+  Braces, 
+  Network, 
+  Database, 
+  Layers, 
+  Activity, 
+  ShieldCheck, 
+  KeyRound, 
+  TestTube, 
+  FileCode, 
+  HardDrive, 
+  GitFork, 
+  Monitor, 
+  Boxes, 
+  Globe, 
+  Smartphone, 
+  Compass, 
+  Shield, 
+  Server 
+} from "lucide-react";
 
 // ─────────────────────────────────────────────────────────────
 // CUSTOM SVG BRAND ICONS (Color Base)
@@ -55,67 +76,8 @@ const AndroidStudioIcon = ({ className, style }: { className?: string; style?: R
   </svg>
 );
 
-const OSIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <rect x="5" y="5" width="14" height="14" rx="2" stroke="#0078D6" strokeWidth="2" />
-    <path d="M9 5v14M15 5v14M5 9h14M5 15h14" stroke="#0078D6" strokeWidth="1" strokeDasharray="1 1" />
-    <rect x="9" y="9" width="6" height="6" rx="1" fill="#0078D6" />
-    <path d="M12 7v10M7 12h10" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
-
-const VMIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#E91E63" strokeWidth="1.5" />
-    <rect x="6" y="6" width="5" height="5" rx="1" fill="#E91E63" opacity="0.3" stroke="#E91E63" strokeWidth="1" />
-    <rect x="13" y="6" width="5" height="5" rx="1" fill="#E91E63" opacity="0.3" stroke="#E91E63" strokeWidth="1" />
-    <rect x="6" y="13" width="5" height="5" rx="1" fill="#E91E63" opacity="0.3" stroke="#E91E63" strokeWidth="1" />
-    <rect x="13" y="13" width="5" height="5" rx="1" fill="#E91E63" fillOpacity="0.8" stroke="#E91E63" strokeWidth="1" />
-  </svg>
-);
-
-const NetworkingIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <circle cx="12" cy="6" r="3" stroke="#9C27B0" strokeWidth="2" />
-    <circle cx="6" cy="16" r="3" stroke="#9C27B0" strokeWidth="2" />
-    <circle cx="18" cy="16" r="3" stroke="#9C27B0" strokeWidth="2" />
-    <path d="M12 9v4m0 0L8 14.5M12 13l4 1.5" stroke="#9C27B0" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
-
-const JWTIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <rect x="3" y="7.5" width="18" height="9" rx="1.5" stroke="#D63AFF" strokeWidth="2" />
-    <circle cx="7.5" cy="12" r="1.5" fill="#FB015B" />
-    <circle cx="12" cy="12" r="1.5" fill="#D63AFF" />
-    <circle cx="16.5" cy="12" r="1.5" fill="#00B9F1" />
-  </svg>
-);
-
-const APITestIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <rect x="3" y="4" width="18" height="10" rx="1.5" stroke="#FF9800" strokeWidth="2" />
-    <path d="M7 9h4M7 6h2" stroke="#FF9800" strokeWidth="1.5" strokeLinecap="round" />
-    <circle cx="17" cy="9" r="1.5" fill="#4CAF50" />
-    <path d="M12 15l3 3-3 3" stroke="#FF9800" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M15 18H5" stroke="#FF9800" strokeWidth="2" strokeLinecap="round" />
-  </svg>
-);
-
-const JsonIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <path d="M8 4c-1.5 0-2 1-2 2.5v3.5c0 1-0.5 1.5-1.5 1.5 1 0 1.5 0.5 1.5 1.5v3.5c0 1.5 0.5 2.5 2 2.5" stroke="#F7DF1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M16 4c1.5 0 2 1 2 2.5v3.5c0 1 0.5 1.5 1.5 1.5-1 0-1.5 0.5-1.5 1.5v3.5c0 1.5-0.5 2.5-2 2.5" stroke="#F7DF1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="12" cy="10" r="1" fill="#F7DF1E" />
-    <circle cx="12" cy="14" r="1" fill="#F7DF1E" />
-  </svg>
-);
-
-// ── Restored original skills (minus Go) ──────────────────────
-
 const LinuxIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    {/* Tux penguin-inspired Linux icon */}
     <ellipse cx="12" cy="8" rx="4.5" ry="5" fill="#FCC624" />
     <ellipse cx="12" cy="8" rx="2.5" ry="3" fill="#1A1A1A" />
     <circle cx="10.5" cy="7" r="0.7" fill="#FFFFFF" />
@@ -129,19 +91,22 @@ const LinuxIcon = ({ className, style }: { className?: string; style?: React.CSS
 
 const CoreJSIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <rect x="2" y="2" width="20" height="20" rx="2" fill="#F7DF1E" />
-    <path d="M7 17.5c.4.7 1 1.2 2 1.2 1.1 0 1.8-.6 1.8-1.7V11H9v5.9c0 .5-.2.7-.5.7-.4 0-.6-.3-.8-.6L7 17.5z" fill="#1A1A1A" />
-    <path d="M13.5 17.4c.5.8 1.2 1.3 2.4 1.3 1.3 0 2.1-.7 2.1-1.8 0-1-.6-1.5-1.7-2l-.6-.3c-.6-.3-.8-.5-.8-.9 0-.4.3-.6.7-.6.4 0 .7.2.9.6l1-.7c-.5-.8-1.1-1.1-1.9-1.1-1.2 0-2 .7-2 1.8 0 1 .6 1.5 1.5 1.9l.6.3c.7.3 1 .5 1 1 0 .4-.4.7-.9.7-.6 0-1-.3-1.3-.8l-1.1.6z" fill="#1A1A1A" />
+    <rect width="24" height="24" rx="3" fill="#F7DF1E" />
+    <path d="M7 19.5c.343.6 1.028 1 1.714 1 .943 0 1.543-.514 1.543-1.428V11H8.628v7.286c0 .4-.172.57-.428.57-.343 0-.515-.228-.686-.514L7 19.5zM12.571 19.429c.43.685 1.03 1.071 2.058 1.071 1.114 0 1.8-.6 1.8-1.543 0-.857-.515-1.285-1.458-1.714l-.514-.257c-.514-.257-.686-.43-.686-.77 0-.343.257-.515.6-.515.343 0 .6.17.77.514l.857-.6c-.43-.686-.943-.943-1.629-.943-1.03 0-1.714.6-1.714 1.543 0 .857.515 1.285 1.285 1.629l.515.257c.6.257.857.43.857.857 0 .343-.343.6-.77.6-.515 0-.857-.257-1.115-.685l-.943.514z" fill="#000000" />
   </svg>
 );
 
 const PythonIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <path d="M12 2C8.5 2 6.5 3.5 6.5 5.5v2H12v1H5C3.3 8.5 2 9.8 2 12s1.3 3.5 3 3.5h1.5v2.5C6.5 20 8.5 22 12 22c3.5 0 5.5-2 5.5-4v-2H12v-1h7c1.7 0 3-1.3 3-3.5S20.7 8.5 19 8.5h-1.5V6c0-2-2-4-5.5-4z" fill="#3776AB" />
-    <path d="M12 2C8.5 2 6.5 3.5 6.5 5.5v2H12v1H5C3.3 8.5 2 9.8 2 12" stroke="#FFD43B" strokeWidth="0" />
-    <path d="M17.5 6v2.5H12v1h7c1.7 0 3 1.3 3 3.5S20.7 15.5 19 15.5h-1.5V18c0 2-2 4-5.5 4" fill="#FFD43B" />
+    <path d="M12 2C8.5 2 6.5 3.5 6.5 5.5v2H12v1H5C3.3 8.5 2 9.8 2 12s1.3 3.5 3 3.5h1.5v2.5C6.5 20 8.5 22 12 22c3.5 0 5.5-2 5.5-4v-2H12v-1h7c1.7 0 3-1.3 3-3.5S20.7 8.5 19 8.5h-1.5V6c0-2-2-4-5.5-4z" fill="url(#python-gradient)" />
     <circle cx="9.5" cy="5.5" r="1" fill="#FFFFFF" />
-    <circle cx="14.5" cy="18.5" r="1" fill="#3776AB" />
+    <circle cx="14.5" cy="18.5" r="1" fill="#FFFFFF" />
+    <defs>
+      <linearGradient id="python-gradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#3776AB" />
+        <stop offset="100%" stopColor="#FFD43B" />
+      </linearGradient>
+    </defs>
   </svg>
 );
 
@@ -230,6 +195,15 @@ const SecurityIcon = ({ className, style }: { className?: string; style?: React.
   </svg>
 );
 
+const AWSIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M3.2 14.6c4.6 2.6 11 .6 15-2.5.5-.4 1.1-.1.9.5-.9 2.5-4.4 5.3-9.5 5.3-4.5 0-8.2-2.2-8.5-2.8-.2-.3.1-.7.7-.5zm15.7-4c-.2-.7-1.1-.6-1.5.1l-.8 1.4c-.2.4 0 .9.5.8l2.2-.4c.7-.1.8-1 .2-1.3l-.6-.6z" fill="#FF9900" />
+    <path d="M4 11.2c0-1 .4-1.6 1.2-1.6.7 0 1 .4 1 1v1H4v-.4zm3.2 1.4V9.8c0-.7-.4-1.2-1.2-1.2-.6 0-1.1.3-1.3.7l.8.5c.2-.2.4-.3.6-.3.3 0 .4.2.4.5v.4H4.5c-1.1 0-1.8.6-1.8 1.4 0 .7.6 1.2 1.4 1.2.7 0 1.2-.3 1.4-.7v.6h1.7zm-.5.1v-1.6" fill="#FFFFFF" />
+    <path d="M8.8 8.8h1.6l.8 2.8.8-2.8h1.5l.8 2.8.8-2.8h1.6l-1.5 4.8h-1.5l-.8-2.7-.8 2.7H10.3L8.8 8.8z" fill="#FFFFFF" />
+    <path d="M19.4 10c0-1-.8-1.4-1.7-1.4-.8 0-1.4.3-1.6.8l.8.5c.2-.3.4-.4.8-.4.4 0 .6.1.6.3v.1c-.2 0-.6.1-.9.2-.8.2-1.3.6-1.3 1.2 0 .7.6 1.1 1.3 1.1.7 0 1.1-.3 1.3-.7v.6h1.7V10zm-1.7 1.4c-.4 0-.6-.2-.6-.5 0-.3.2-.4.6-.5.2 0 .5 0 .6.1v.6c-.1.2-.3.3-.6.3z" fill="#FFFFFF" />
+  </svg>
+);
+
 // ─────────────────────────────────────────────────────────────
 // CATEGORIES
 // ─────────────────────────────────────────────────────────────
@@ -257,7 +231,7 @@ const SKILL_CATEGORIES: { title: string; skills: string[] }[] = [
   },
   {
     title: "Deployment & DevOps",
-    skills: ["Infrastructure as Code", "Containerization", "Automated Pipelines"],
+    skills: ["AWS", "Infrastructure as Code", "Containerization", "Automated Pipelines"],
   },
 ];
 
@@ -266,33 +240,29 @@ const SKILL_CATEGORIES: { title: string; skills: string[] }[] = [
 // ─────────────────────────────────────────────────────────────
 
 const SKILL_ICONS: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
-  // Mobile & Dev Tools
   "Android SDK": AndroidIcon,
   "Flutter": FlutterIcon,
   "Android Studio": AndroidStudioIcon,
   "Git": GitIcon,
-  // Networking & Security
-  "Computer Networking": NetworkingIcon,
-  "JSON Web Token (JWT)": JWTIcon,
-  "Api Testing": APITestIcon,
-  // Data & Web
-  "Json": JsonIcon,
+  "Computer Networking": Network as any,
+  "JSON Web Token (JWT)": KeyRound as any,
+  "Api Testing": TestTube as any,
+  "Json": Braces as any,
   "Core JS": CoreJSIcon,
   "Python": PythonIcon,
-  "MySQL": MySQLIcon,
-  "MongoDB": MongoDBIcon,
-  // Systems
+  "MySQL": Database as any,
+  "MongoDB": Database as any,
   "Linux": LinuxIcon,
-  "Operating Systems": OSIcon,
-  "Virtual Machines": VMIcon,
-  // Architecture
-  "Microservices": MicroservicesIcon,
-  "3-Tier Architecture": TierArchIcon,
-  "Real-time Systems": RealtimeIcon,
-  "Infrastructure as Code": IaCIcon,
-  "Containerization": ContainerIcon,
-  "Automated Pipelines": PipelinesIcon,
-  "Security": SecurityIcon,
+  "Operating Systems": Monitor as any,
+  "Virtual Machines": Boxes as any,
+  "Microservices": Boxes as any,
+  "3-Tier Architecture": Layers as any,
+  "Real-time Systems": Activity as any,
+  "Infrastructure as Code": FileCode as any,
+  "Containerization": HardDrive as any,
+  "Automated Pipelines": GitFork as any,
+  "Security": ShieldCheck as any,
+  "AWS": AWSIcon,
 };
 
 const SKILL_COLORS: Record<string, string> = {
@@ -306,7 +276,7 @@ const SKILL_COLORS: Record<string, string> = {
   "Json": "#F7DF1E",
   "Core JS": "#F7DF1E",
   "Python": "#3776AB",
-  "MySQL": "#F29111",
+  "MySQL": "#00758F",
   "MongoDB": "#47A248",
   "Linux": "#FCC624",
   "Operating Systems": "#0078D6",
@@ -318,6 +288,7 @@ const SKILL_COLORS: Record<string, string> = {
   "Containerization": "#2496ED",
   "Automated Pipelines": "#8B5CF6",
   "Security": "#EF4444",
+  "AWS": "#FF9900",
 };
 
 export const Skills = () => {
@@ -334,21 +305,41 @@ export const Skills = () => {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
     visible: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
-        duration: 0.4,
-        ease: "easeOut",
+        duration: 0.5,
+        ease: [0.16, 1, 0.3, 1],
       },
     },
+  };
+
+  const getCategoryIcon = (title: string) => {
+    switch (title) {
+      case "Languages":
+        return <Globe className="w-4 h-4 shrink-0 text-emerald-500" />;
+      case "Frameworks & Mobile":
+        return <Smartphone className="w-4 h-4 shrink-0 text-sky-500" />;
+      case "Tools & Platforms":
+        return <Compass className="w-4 h-4 shrink-0 text-amber-500" />;
+      case "Databases":
+        return <Database className="w-4 h-4 shrink-0 text-orange-500" />;
+      case "Architecture & Security":
+        return <Shield className="w-4 h-4 shrink-0 text-red-500" />;
+      case "Deployment & DevOps":
+        return <Server className="w-4 h-4 shrink-0 text-purple-500" />;
+      default:
+        return <Compass className="w-4 h-4 shrink-0 text-neutral-500" />;
+    }
   };
 
   return (
     <section
       id="skills"
-      className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
+      className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
       style={{ backgroundColor: "var(--color-surface)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}
     >
       <div className="absolute left-0 top-1/3 pointer-events-none" style={{ width: "clamp(150px,30vw,350px)", height: "clamp(150px,30vw,350px)", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(60px)" }} />
@@ -358,53 +349,57 @@ export const Skills = () => {
         <div className="max-w-6xl mx-auto">
 
           {/* Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16">
-            <div className="flex flex-col gap-4">
-              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="flex items-center gap-4">
-                <span className="section-line" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: "var(--color-text)" }}>DEVELOPMENT STACK</p>
-              </motion.div>
-              <motion.h2
-                className="font-bold tracking-tighter"
-                style={{ color: "var(--color-text)", fontSize: "clamp(2.5rem, 9vw, 5rem)" }}
-              >
-                <MaskText>Skills.</MaskText>
-              </motion.h2>
-            </div>
-            <p className="max-w-sm text-sm sm:text-base leading-relaxed font-medium" style={{ color: "var(--color-text-muted)" }}>
-              A curated stack of key programming languages, data stores, architectural patterns, and system operations.
-            </p>
-          </div>
-
-          {/* Categorized Sections */}
-          <div className="flex flex-col gap-8 sm:gap-10">
-            {SKILL_CATEGORIES.map((cat) => (
-              <div key={cat.title}>
-                {/* Category Header — IDE-style panel bar */}
-                <motion.div
-                  initial={{ opacity: 0, y: -6 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                  className="flex items-center gap-3 mb-3 sm:mb-4"
+          <ScrollReveal className="flex flex-col gap-4 mb-10 sm:mb-16">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-8">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-4">
+                  <span className="section-line" />
+                  <p className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: "var(--color-text)" }}>DEVELOPMENT STACK</p>
+                </div>
+                <h2
+                  className="font-bold tracking-tighter"
+                  style={{ color: "var(--color-text)", fontSize: "clamp(2rem, 9vw, 5rem)" }}
                 >
-                  <div className="w-1 h-5 rounded-full shrink-0" style={{ background: "var(--color-primary)" }} />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.25em]" style={{ color: "var(--color-text)" }}>
-                    {cat.title}
-                  </span>
-                  <div className="flex-1 h-px" style={{ background: "linear-gradient(90deg, var(--color-border), transparent)" }} />
-                </motion.div>
+                  <MaskText>Skills.</MaskText>
+                </h2>
+              </div>
+              <p className="max-w-sm text-sm sm:text-base leading-relaxed font-medium" style={{ color: "var(--color-text-muted)" }}>
+                A curated stack of key programming languages, data stores, architectural patterns, and system operations.
+              </p>
+            </div>
+          </ScrollReveal>
 
-                {/* Skills Grid — auto-fill responsive */}
+          {/* Categorized Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+            {SKILL_CATEGORIES.map((cat, catIdx) => (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: catIdx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="p-6 sm:p-7 rounded-2xl border border-[var(--color-border)] bg-neutral-50/50 dark:bg-[#121212]/30 backdrop-blur-md hover:border-neutral-500 dark:hover:border-neutral-800 transition-all duration-300 flex flex-col gap-5 shadow-sm"
+              >
+                {/* Category Header */}
+                <div className="flex items-center border-b border-[var(--color-border)] pb-4">
+                  <div className="flex items-center gap-3">
+                    {getCategoryIcon(cat.title)}
+                    <span className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em] text-[var(--color-text)]">
+                      {cat.title}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Skills wrap */}
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="flex flex-wrap gap-2 sm:gap-3"
+                  viewport={{ once: true }}
+                  className="flex flex-wrap gap-2.5"
                 >
                   {cat.skills.map((skill) => {
-                    const Icon = SKILL_ICONS[skill];
+                    const Icon = SKILL_ICONS[skill] || Compass;
                     const brandColor = SKILL_COLORS[skill] || "var(--color-text)";
                     const isHovered = hoveredSkill === skill;
 
@@ -414,32 +409,30 @@ export const Skills = () => {
                         variants={itemVariants}
                         onMouseEnter={() => setHoveredSkill(skill)}
                         onMouseLeave={() => setHoveredSkill(null)}
-                        className="flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border transition-all duration-300 cursor-pointer bg-white dark:bg-neutral-950"
+                        className="flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-250 cursor-pointer bg-white dark:bg-neutral-900/50"
                         style={{
                           borderColor: isHovered ? brandColor : "var(--color-border)",
                           boxShadow: isHovered
-                            ? `0 8px 20px -8px ${brandColor}33, 0 0 0 1px ${brandColor}30`
+                            ? `0 8px 20px -8px ${brandColor}40, 0 0 0 1px ${brandColor}20`
                             : "none",
-                          transform: isHovered ? "translateY(-2px) scale(1.02)" : "none"
+                          transform: isHovered ? "translateY(-2px)" : "none"
                         }}
                       >
-                        <div
-                          className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-transform duration-300 shrink-0"
-                          style={{
-                            backgroundColor: `${brandColor}12`,
-                            border: `1px solid ${brandColor}20`
-                          }}
+                        <Icon 
+                          className="w-5 h-5 shrink-0 transition-colors duration-250" 
+                          style={{ color: isHovered ? brandColor : "var(--color-text-muted)" }} 
+                        />
+                        <span 
+                          className="text-xs sm:text-sm font-bold uppercase tracking-wide transition-colors duration-250 leading-none"
+                          style={{ color: isHovered ? "var(--color-text)" : "var(--color-text-muted)" }}
                         >
-                          <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                        </div>
-                        <span className="text-[10px] sm:text-xs font-bold tracking-wide text-neutral-800 dark:text-neutral-200 uppercase leading-tight">
                           {skill}
                         </span>
                       </motion.div>
                     );
                   })}
                 </motion.div>
-              </div>
+              </motion.div>
             ))}
           </div>
 

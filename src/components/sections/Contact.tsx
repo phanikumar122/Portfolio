@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Contact = () => {
   const containerVariants: Variants = {
@@ -14,11 +15,12 @@ export const Contact = () => {
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
+    hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -64,7 +66,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 md:py-36 lg:py-48 relative overflow-hidden"
+      className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
       style={{ backgroundColor: "var(--color-bg)", borderTop: "1px solid var(--color-border)" }}
     >
       {/* Background radial glow */}
@@ -81,13 +83,8 @@ export const Contact = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16 max-w-2xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-3 mb-4"
-            >
+          <ScrollReveal className="text-center mb-16 max-w-2xl mx-auto">
+            <div className="inline-flex items-center gap-3 mb-4">
               <span className="section-line w-8" />
               <p
                 className="text-[11px] font-bold uppercase tracking-[0.3em]"
@@ -96,27 +93,19 @@ export const Contact = () => {
                 CONNECTION
               </p>
               <span className="section-line w-8" />
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            </div>
+            <h2
               className="font-bold tracking-tighter mb-6 text-neutral-900 dark:text-neutral-100"
               style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", lineHeight: 1.1 }}
             >
               Connect With <span className="italic glow-text">Me.</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
+            </h2>
+            <p
               className="text-sm sm:text-base leading-relaxed font-medium text-neutral-500 dark:text-neutral-400"
             >
               Open for architectural consultation, backend logic engineering, and remote collaboration. Choose your preferred gateway below.
-            </motion.p>
-          </div>
+            </p>
+          </ScrollReveal>
 
           {/* Symmetrical Grid of Cards */}
           <motion.div
@@ -124,7 +113,7 @@ export const Contact = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
           >
             {channels.map((chan) => (
               <motion.a
@@ -133,7 +122,7 @@ export const Contact = () => {
                 target={chan.href.startsWith("mailto") ? undefined : "_blank"}
                 rel={chan.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
                 variants={cardVariants}
-                className="group relative flex flex-col justify-between p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-450 dark:hover:border-neutral-700 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                className="group relative flex flex-col justify-between p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-450 dark:hover:border-neutral-700 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
               >
                 {/* Content */}
                 <div>
@@ -153,7 +142,7 @@ export const Contact = () => {
                       <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
                         {chan.name}
                       </h3>
-                      <span className="text-[10px] font-mono font-bold text-neutral-400 dark:text-neutral-500 block mt-0.5 truncate max-w-[160px]">
+                      <span className="text-[10px] font-mono font-bold text-neutral-400 dark:text-neutral-500 block mt-0.5 truncate max-w-[200px] sm:max-w-[160px]">
                         {chan.value}
                       </span>
                     </div>

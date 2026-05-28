@@ -1,15 +1,15 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { MaskText } from "@/components/ui/MaskText";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 md:py-36 lg:py-48 relative overflow-hidden"
+      className="py-12 sm:py-16 md:py-20 relative overflow-hidden"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
       {/* Blobs */}
@@ -20,24 +20,26 @@ export const Projects = () => {
         <div className="max-w-6xl mx-auto">
 
           {/* Header */}
-          <div className="mb-14 sm:mb-24">
-            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="flex items-center gap-4 mb-5">
+          <ScrollReveal className="mb-14 sm:mb-20">
+            <div className="flex items-center gap-4 mb-5">
               <span className="section-line" />
               <p className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: "var(--color-text)" }}>Portfolio</p>
-            </motion.div>
-            <motion.h2
+            </div>
+            <h2
               className="font-bold tracking-tighter"
               style={{ color: "var(--color-text)", fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
             >
               <MaskText>Curated Projects.</MaskText>
-            </motion.h2>
-          </div>
+            </h2>
+          </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {/* Projects Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 mt-10">
             {portfolioData.projects.map((project, idx) => (
               <ProjectCard key={project.id} project={project} idx={idx} />
             ))}
           </div>
+
         </div>
       </div>
     </section>

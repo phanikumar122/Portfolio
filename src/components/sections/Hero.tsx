@@ -5,6 +5,12 @@ import Image from "next/image";
 import { ArrowRight, Mail, FileText, Sparkles, MapPin } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { TextScramble } from "@/components/ui/TextScramble";
+import dynamic from "next/dynamic";
+
+const CanvasBackground = dynamic(
+  () => import("@/components/ui/CanvasBackground").then((mod) => mod.CanvasBackground),
+  { ssr: false }
+);
 
 const FloatingOrb = ({
   size, top, left, delay, opacity,
@@ -27,9 +33,11 @@ export const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-center justify-center pt-20 pb-10 sm:pt-24 sm:pb-16 overflow-hidden"
+      className="relative min-h-[100svh] flex items-center justify-center pt-16 pb-10 sm:pt-24 sm:pb-16 overflow-hidden"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
+      <div id="about" className="absolute top-0 left-0 w-full h-0 pointer-events-none" aria-hidden="true" />
+      <CanvasBackground />
       {/* Cinematic glow layers */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute" style={{ top: "-5%", left: "-5%", width: "65%", height: "65%", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(70px)" }} />
@@ -44,7 +52,7 @@ export const Hero = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
         {/* ── Two-column layout: text left, image right ── */}
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-16">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-16">
 
           {/* ── LEFT: Text content ── */}
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
@@ -57,7 +65,7 @@ export const Hero = () => {
               className="mb-5 sm:mb-7"
             >
               <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.22em]"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-center leading-snug"
                 style={{
                   background: "var(--color-surface)",
                   border: "1px solid var(--color-border)",
@@ -198,8 +206,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-10 sm:mt-12 flex flex-wrap justify-center lg:justify-start items-center gap-y-4"
-              style={{ gap: "0" }}
+              className="mt-10 sm:mt-12 flex flex-wrap justify-center lg:justify-start items-center gap-y-4 gap-x-0"
             >
               {[
                 { value: `${portfolioData.projects.length}+`, label: "Projects" },
@@ -245,7 +252,7 @@ export const Hero = () => {
             <div
               className="relative"
               style={{
-                width: "clamp(180px, 60vw, 320px)",
+                width: "clamp(160px, 55vw, 320px)",
                 paddingTop: "1.5rem",
                 paddingBottom: "1.5rem",
               }}
@@ -292,7 +299,7 @@ export const Hero = () => {
                 style={{
                   width: "100%",
                   maxWidth: "280px",
-                  height: "clamp(240px, 60vw, 360px)",
+                  height: "clamp(210px, 55vw, 360px)",
                   border: "1px solid var(--color-border)",
                   boxShadow: "0 20px 60px rgba(0,0,0,0.25), 0 0 80px var(--color-glow)",
                   background: "var(--color-surface)",

@@ -4,6 +4,7 @@ import { motion, Variants } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ExternalLink, Award, Shield, Code2 } from "lucide-react";
 import { MaskText } from "@/components/ui/MaskText";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const issuerMeta: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
   Cisco: {
@@ -22,6 +23,12 @@ const issuerMeta: Record<string, { color: string; bg: string; border: string; ic
     color: "text-orange-500",
     bg: "bg-orange-500/10",
     border: "border-orange-500/20",
+    icon: <Award className="w-4 h-4" />,
+  },
+  AWS: {
+    color: "text-amber-500",
+    bg: "bg-amber-500/10",
+    border: "border-amber-500/20",
     icon: <Award className="w-4 h-4" />,
   },
 };
@@ -43,18 +50,19 @@ export const Certificates = () => {
   };
 
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 28 },
+    hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+      filter: "blur(0px)",
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
   return (
     <section
       id="certificates"
-      className="py-16 sm:py-24 md:py-32 relative overflow-hidden"
+      className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
       style={{
         backgroundColor: "var(--color-surface)",
         borderTop: "1px solid var(--color-border)",
@@ -85,14 +93,9 @@ export const Certificates = () => {
         <div className="max-w-5xl mx-auto">
 
           {/* Header */}
-          <div className="mb-12 sm:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <ScrollReveal className="mb-12 sm:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-4 mb-4"
-              >
+              <div className="flex items-center gap-4 mb-4">
                 <span className="section-line" />
                 <p
                   className="text-[11px] font-bold uppercase tracking-[0.3em]"
@@ -100,13 +103,13 @@ export const Certificates = () => {
                 >
                   ACCOLADES
                 </p>
-              </motion.div>
-              <motion.h2
+              </div>
+              <h2
                 className="font-bold tracking-tighter text-neutral-900 dark:text-neutral-100"
                 style={{ fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
               >
                 <MaskText>Recognition. Verified.</MaskText>
-              </motion.h2>
+              </h2>
             </div>
             <p
               className="max-w-xs text-sm sm:text-base font-medium leading-relaxed"
@@ -114,7 +117,7 @@ export const Certificates = () => {
             >
               Certified across networking, security, and development. Click any card to view the official credential.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Certificate Cards Grid */}
           <motion.div
@@ -122,7 +125,7 @@ export const Certificates = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           >
             {portfolioData.certificates.map((cert) => {
               const meta = issuerMeta[cert.issuer] ?? defaultMeta;
@@ -133,7 +136,7 @@ export const Certificates = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   variants={cardVariants}
-                  className="group relative flex flex-col justify-between p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-400 dark:hover:border-neutral-600 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                  className="group relative flex flex-col justify-between p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-400 dark:hover:border-neutral-600 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
                 >
                   {/* Top accent line */}
                   <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 dark:text-neutral-500 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 dark:border-neutral-800 pb-2">

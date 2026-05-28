@@ -33,7 +33,7 @@ export const portfolioData = {
     },
     {
       category: "System Operations",
-      items: ["Infrastructure as Code", "Containerization", "Automated Pipelines", "Security"],
+      items: ["AWS", "Infrastructure as Code", "Containerization", "Automated Pipelines", "Security"],
     },
   ],
   projects: [
@@ -133,6 +133,13 @@ export const portfolioData = {
       issuer: "Udemy",
       date: "2025",
       link: "https://www.udemy.com/certificate/UC-0faba52c-9d40-4d51-add5-dca5328dcd99/",
+    },
+    {
+      id: 7,
+      title: "AWS Academy Graduate - Cloud Foundations",
+      issuer: "AWS",
+      date: "2026",
+      link: "https://www.credly.com/badges/a2b286c3-60f2-4085-858d-e3292c5bdfb2/public_url",
     },
   ],
   hackathons: [
