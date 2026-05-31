@@ -195,6 +195,50 @@ const SecurityIcon = ({ className, style }: { className?: string; style?: React.
   </svg>
 );
 
+const JWTIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <rect x="2" y="5" width="20" height="14" rx="2" fill="#D63AFF" opacity="0.15" stroke="#D63AFF" strokeWidth="1.5" />
+    <path d="M7 9h2v6H7v-6zm3 0h1.5l1 3.5 1-3.5H15v6h-1.5v-3.8l-1.1 3.8h-1l-1.1-3.8V15H10V9zm6.5 0h3v1.5h-1.5v1h1.5V13h-1.5v2h-1.5V9z" fill="#D63AFF" />
+  </svg>
+);
+
+const ApiTestingIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" fill="#FF9800" />
+  </svg>
+);
+
+const JsonIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M8 3H5c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2h1v4H5c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2h3m8-18h3c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-1v4h1c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-3" stroke="#F7DF1E" strokeWidth="2" strokeLinecap="round" />
+    <path d="M9 10h1v4H9v-4zm3 0h2v4h-2v-4z" fill="#F7DF1E" />
+  </svg>
+);
+
+const NetworkingIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <circle cx="12" cy="5" r="3" fill="#9C27B0" />
+    <circle cx="5" cy="18" r="3" fill="#9C27B0" />
+    <circle cx="19" cy="18" r="3" fill="#9C27B0" />
+    <path d="M12 8v4M5 15l7-3 7 3" stroke="#9C27B0" strokeWidth="2" />
+  </svg>
+);
+
+const OSIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <rect x="3" y="3" width="18" height="13" rx="2" stroke="#0078D6" strokeWidth="2" />
+    <path d="M3 12h18M12 16v4M8 20h8" stroke="#0078D6" strokeWidth="2" />
+    <path d="M6 7l2 1.5L6 10" stroke="#0078D6" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+
+const VMIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
+    <path d="M12 2L2 7l10 5 10-5-10-5z" fill="#E91E63" opacity="0.8" />
+    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#E91E63" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 const AWSIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
     <path d="M3.2 14.6c4.6 2.6 11 .6 15-2.5.5-.4 1.1-.1.9.5-.9 2.5-4.4 5.3-9.5 5.3-4.5 0-8.2-2.2-8.5-2.8-.2-.3.1-.7.7-.5zm15.7-4c-.2-.7-1.1-.6-1.5.1l-.8 1.4c-.2.4 0 .9.5.8l2.2-.4c.7-.1.8-1 .2-1.3l-.6-.6z" fill="#FF9900" />
@@ -244,24 +288,24 @@ const SKILL_ICONS: Record<string, React.ComponentType<{ className?: string; styl
   "Flutter": FlutterIcon,
   "Android Studio": AndroidStudioIcon,
   "Git": GitIcon,
-  "Computer Networking": Network as any,
-  "JSON Web Token (JWT)": KeyRound as any,
-  "Api Testing": TestTube as any,
-  "Json": Braces as any,
+  "Computer Networking": NetworkingIcon,
+  "JSON Web Token (JWT)": JWTIcon,
+  "Api Testing": ApiTestingIcon,
+  "Json": JsonIcon,
   "Core JS": CoreJSIcon,
   "Python": PythonIcon,
-  "MySQL": Database as any,
-  "MongoDB": Database as any,
+  "MySQL": MySQLIcon,
+  "MongoDB": MongoDBIcon,
   "Linux": LinuxIcon,
-  "Operating Systems": Monitor as any,
-  "Virtual Machines": Boxes as any,
-  "Microservices": Boxes as any,
-  "3-Tier Architecture": Layers as any,
-  "Real-time Systems": Activity as any,
-  "Infrastructure as Code": FileCode as any,
-  "Containerization": HardDrive as any,
-  "Automated Pipelines": GitFork as any,
-  "Security": ShieldCheck as any,
+  "Operating Systems": OSIcon,
+  "Virtual Machines": VMIcon,
+  "Microservices": MicroservicesIcon,
+  "3-Tier Architecture": TierArchIcon,
+  "Real-time Systems": RealtimeIcon,
+  "Infrastructure as Code": IaCIcon,
+  "Containerization": ContainerIcon,
+  "Automated Pipelines": PipelinesIcon,
+  "Security": SecurityIcon,
   "AWS": AWSIcon,
 };
 
@@ -340,7 +384,7 @@ export const Skills = () => {
     <section
       id="skills"
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
-      style={{ backgroundColor: "var(--color-surface)", borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}
+      style={{ borderTop: "1px solid var(--color-border)", borderBottom: "1px solid var(--color-border)" }}
     >
       <div className="absolute left-0 top-1/3 pointer-events-none" style={{ width: "clamp(150px,30vw,350px)", height: "clamp(150px,30vw,350px)", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(60px)" }} />
       <div className="absolute right-0 bottom-1/3 pointer-events-none" style={{ width: "clamp(120px,25vw,300px)", height: "clamp(120px,25vw,300px)", background: "radial-gradient(ellipse, var(--blob-2) 0%, transparent 65%)", filter: "blur(50px)" }} />
@@ -370,7 +414,7 @@ export const Skills = () => {
           </ScrollReveal>
 
           {/* Categorized Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SKILL_CATEGORIES.map((cat, catIdx) => (
               <motion.div
                 key={cat.title}
@@ -385,18 +429,18 @@ export const Skills = () => {
                   <div className="flex items-center gap-3">
                     {getCategoryIcon(cat.title)}
                     <span className="text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em] text-[var(--color-text)]">
-                      {cat.title}
+                       {cat.title}
                     </span>
                   </div>
                 </div>
 
-                {/* Skills wrap */}
+                {/* Skills Grid */}
                 <motion.div
                   variants={containerVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex flex-wrap gap-2.5"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-2.5"
                 >
                   {cat.skills.map((skill) => {
                     const Icon = SKILL_ICONS[skill] || Compass;
@@ -409,7 +453,7 @@ export const Skills = () => {
                         variants={itemVariants}
                         onMouseEnter={() => setHoveredSkill(skill)}
                         onMouseLeave={() => setHoveredSkill(null)}
-                        className="flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-250 cursor-pointer bg-white dark:bg-neutral-900/50"
+                        className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl border transition-all duration-250 cursor-pointer bg-white dark:bg-neutral-900/50 w-full"
                         style={{
                           borderColor: isHovered ? brandColor : "var(--color-border)",
                           boxShadow: isHovered
@@ -419,11 +463,11 @@ export const Skills = () => {
                         }}
                       >
                         <Icon 
-                          className="w-5 h-5 shrink-0 transition-colors duration-250" 
+                          className="w-4 h-4 shrink-0 transition-colors duration-250" 
                           style={{ color: isHovered ? brandColor : "var(--color-text-muted)" }} 
                         />
                         <span 
-                          className="text-xs sm:text-sm font-bold uppercase tracking-wide transition-colors duration-250 leading-none"
+                          className="text-[10px] sm:text-xs font-bold uppercase tracking-wide transition-colors duration-250 leading-tight"
                           style={{ color: isHovered ? "var(--color-text)" : "var(--color-text-muted)" }}
                         >
                           {skill}

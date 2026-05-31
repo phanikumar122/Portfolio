@@ -6,23 +6,7 @@ import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Contact = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12 },
-    },
-  };
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
+  // cardVariants removed
 
   const channels = [
     {
@@ -67,7 +51,7 @@ export const Contact = () => {
     <section
       id="contact"
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
-      style={{ backgroundColor: "var(--color-bg)", borderTop: "1px solid var(--color-border)" }}
+      style={{ borderTop: "1px solid var(--color-border)" }}
     >
       {/* Background radial glow */}
       <div
@@ -95,8 +79,8 @@ export const Contact = () => {
               <span className="section-line w-8" />
             </div>
             <h2
-              className="font-bold tracking-tighter mb-6 text-neutral-900 dark:text-neutral-100"
-              style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", lineHeight: 1.1 }}
+              className="font-bold tracking-tighter mb-6"
+              style={{ color: "var(--color-text)", fontSize: "clamp(2.2rem, 5vw, 4rem)", lineHeight: 1.1 }}
             >
               Connect With <span className="italic glow-text">Me.</span>
             </h2>
@@ -108,20 +92,17 @@ export const Contact = () => {
           </ScrollReveal>
 
           {/* Symmetrical Grid of Cards */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
-          >
-            {channels.map((chan) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+            {channels.map((chan, idx) => (
               <motion.a
                 key={chan.name}
                 href={chan.href}
                 target={chan.href.startsWith("mailto") ? undefined : "_blank"}
                 rel={chan.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                variants={cardVariants}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative flex flex-col justify-between p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-450 dark:hover:border-neutral-700 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
               >
                 {/* Content */}
@@ -171,7 +152,7 @@ export const Contact = () => {
                 />
               </motion.a>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

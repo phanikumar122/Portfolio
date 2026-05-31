@@ -92,10 +92,12 @@
     inset: 0;
     z-index: -2;
     background:
+      radial-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
       radial-gradient(ellipse 70% 50% at 5% 5%, var(--blob-1) 0%, transparent 60%),
       radial-gradient(ellipse 55% 45% at 95% 95%, var(--blob-2) 0%, transparent 60%),
       radial-gradient(ellipse 35% 30% at 50% 50%, var(--blob-1) 0%, transparent 75%),
       var(--color-bg);
+    background-size: 24px 24px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     pointer-events: none;
     transition: all 0.3s ease;
   }
@@ -261,6 +263,7 @@
 .animate-float-r     { animation: float-r  7s ease-in-out infinite; }
 .animate-float-slow  { animation: float   10s ease-in-out infinite; }
 .animate-glow-pulse  { animation: glow-pulse 4s ease-in-out infinite; }
+.animate-marquee     { animation: marquee 30s linear infinite; }
 
 /* GPU compositing hint */
 .fixed { -webkit-backface-visibility: hidden; backface-visibility: hidden; }

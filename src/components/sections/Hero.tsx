@@ -5,12 +5,7 @@ import Image from "next/image";
 import { ArrowRight, Mail, FileText, Sparkles, MapPin } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { TextScramble } from "@/components/ui/TextScramble";
-import dynamic from "next/dynamic";
 
-const CanvasBackground = dynamic(
-  () => import("@/components/ui/CanvasBackground").then((mod) => mod.CanvasBackground),
-  { ssr: false }
-);
 
 const FloatingOrb = ({
   size, top, left, delay, opacity,
@@ -34,10 +29,8 @@ export const Hero = () => {
     <section
       id="home"
       className="relative min-h-[100svh] flex items-center justify-center pt-16 pb-10 sm:pt-24 sm:pb-16 overflow-hidden"
-      style={{ backgroundColor: "var(--color-bg)" }}
     >
       <div id="about" className="absolute top-0 left-0 w-full h-0 pointer-events-none" aria-hidden="true" />
-      <CanvasBackground />
       {/* Cinematic glow layers */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute" style={{ top: "-5%", left: "-5%", width: "65%", height: "65%", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(70px)" }} />
@@ -128,7 +121,7 @@ export const Hero = () => {
               className="text-sm sm:text-base md:text-lg mb-9 sm:mb-12 max-w-xl leading-relaxed font-medium"
               style={{ color: "var(--color-text-muted)" }}
             >
-              Engineering high-performance digital products into seamless, immersive ecosystems. Full-stack developer with a passion for clean architecture.
+              {portfolioData.description}
             </motion.p>
 
             {/* CTAs */}

@@ -10,7 +10,6 @@ export const Projects = () => {
     <section
       id="projects"
       className="py-12 sm:py-16 md:py-20 relative overflow-hidden"
-      style={{ backgroundColor: "var(--color-bg)" }}
     >
       {/* Blobs */}
       <div className="absolute top-1/4 right-0 pointer-events-none" style={{ width: "clamp(150px,30vw,400px)", height: "clamp(150px,30vw,400px)", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(70px)" }} />

@@ -81,15 +81,24 @@ export const CanvasBackground = () => {
       depthWrite: false,
     });
 
+    const maxConnections = 400;
+    const linePositions = new Float32Array(maxConnections * 2 * 3);
     const lineGeometry = new THREE.BufferGeometry();
+    lineGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
+    
     const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lineMesh);
 
+    // Cache container dimensions to prevent layout thrashing
+    let rectWidth = container.clientWidth;
+    let rectHeight = container.clientHeight;
+    let rectLeft = container.getBoundingClientRect().left;
+    let rectTop = container.getBoundingClientRect().top;
+
     // 4. Mouse Move Event
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-      const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      const x = ((e.clientX - rectLeft) / rectWidth) * 2 - 1;
+      const y = -((e.clientY - rectTop) / rectHeight) * 2 + 1;
       
       mouseRef.current.targetX = x * 160;
       mouseRef.current.targetY = y * 110;
@@ -100,11 +109,15 @@ export const CanvasBackground = () => {
     // 5. Resize Event
     const handleResize = () => {
       if (!container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.aspect = w / h;
+      rectWidth = container.clientWidth;
+      rectHeight = container.clientHeight;
+      const rect = container.getBoundingClientRect();
+      rectLeft = rect.left;
+      rectTop = rect.top;
+
+      camera.aspect = rectWidth / rectHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
+      renderer.setSize(rectWidth, rectHeight);
     };
 
     window.addEventListener("resize", handleResize);
@@ -120,7 +133,8 @@ export const CanvasBackground = () => {
       mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.05;
 
       const posArr = geometry.attributes.position.array as Float32Array;
-      const linePositions: number[] = [];
+      const linePositionsAttr = lineGeometry.attributes.position.array as Float32Array;
+      let lineIndex = 0;
 
       for (let i = 0; i < particleCount; i++) {
         // Update positions
@@ -149,17 +163,24 @@ export const CanvasBackground = () => {
           const dzLine = posArr[i * 3 + 2] - posArr[j * 3 + 2];
           const distLine = Math.sqrt(dxLine * dxLine + dyLine * dyLine + dzLine * dzLine);
 
-          if (distLine < 60) {
-            linePositions.push(
-              posArr[i * 3], posArr[i * 3 + 1], posArr[i * 3 + 2],
-              posArr[j * 3], posArr[j * 3 + 1], posArr[j * 3 + 2]
-            );
+          if (distLine < 60 && lineIndex < maxConnections) {
+            const idx = lineIndex * 6;
+            linePositionsAttr[idx] = posArr[i * 3];
+            linePositionsAttr[idx + 1] = posArr[i * 3 + 1];
+            linePositionsAttr[idx + 2] = posArr[i * 3 + 2];
+            
+            linePositionsAttr[idx + 3] = posArr[j * 3];
+            linePositionsAttr[idx + 4] = posArr[j * 3 + 1];
+            linePositionsAttr[idx + 5] = posArr[j * 3 + 2];
+            
+            lineIndex++;
           }
         }
       }
 
       geometry.attributes.position.needsUpdate = true;
-      lineGeometry.setAttribute("position", new THREE.Float32BufferAttribute(linePositions, 3));
+      lineGeometry.attributes.position.needsUpdate = true;
+      lineGeometry.setDrawRange(0, lineIndex * 2);
 
       // Slow rotational drift
       points.rotation.y += 0.0005;
@@ -193,7 +214,7 @@ export const CanvasBackground = () => {
   return (
     <div 
       ref={containerRef} 
-      className="absolute inset-0 z-0 pointer-events-none w-full h-full"
+      className="fixed inset-0 z-[-1] pointer-events-none w-full h-full"
       style={{ opacity: 0.8 }}
     />
   );

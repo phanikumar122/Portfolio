@@ -1,8 +1,8 @@
 export const portfolioData = {
   name: "Phani Kumar",
   role: "Technical Engineer",
-  tagline: "Engineering high-performance digital fragments into seamless, immersive ecosystems.",
-  description: "I specialize in bridging the gap between aesthetics and robust engineering. My approach combines scalable backend architectures to create digital products that leave a lasting imprint.",
+  tagline: "Engineering interactive, user-friendly digital experiences powered by clean design and AI.",
+  description: "I am an engineering student passionate about transforming ideas into interactive digital experiences. Specializing in frontend development, I focus on building responsive, visually appealing applications with smooth animations and UI/UX principles. Driven by a mindset to solve real-world problems, I continuously expand my expertise into backend engineering, APIs, cloud computing, and AI-powered systems.",
   email: "phanivinnakota122@gmail.com",
   github: "https://github.com/phanikumar122",
   linkedin: "https://www.linkedin.com/in/phani-kumar-999022375/",

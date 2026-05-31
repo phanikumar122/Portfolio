@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 export const MaskText = ({ children, className }: { children: string; className?: string }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.75,
+    threshold: 0.1,
   });
 
   const phrases = children.split(" ");

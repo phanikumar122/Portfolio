@@ -2,7 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Trophy, Cpu, Code, Terminal } from "lucide-react";
+import { Trophy, Cpu, Code, Github, Award } from "lucide-react";
 import { MaskText } from "@/components/ui/MaskText";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useRef } from "react";
@@ -17,27 +17,22 @@ type Hackathon = {
   link?: string;
 };
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
-  }
-};
+// cardVariants removed
 
-const HackathonCard = ({ hack, tags }: { hack: Hackathon; tags: string[] }) => {
+const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; idx: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
+    const mouseXPos = e.clientX - rect.left;
+    const mouseYPos = e.clientY - rect.top;
 
-    const x = mouseX / rect.width - 0.5;
-    const y = mouseY / rect.height - 0.5;
+    cardRef.current.style.setProperty('--mouse-x', `${mouseXPos}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${mouseYPos}px`);
+
+    const x = mouseXPos / rect.width - 0.5;
+    const y = mouseYPos / rect.height - 0.5;
     const el = cardRef.current.querySelector(".hackathon-card-inner") as HTMLElement;
     if (el) {
       el.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
@@ -56,59 +51,76 @@ const HackathonCard = ({ hack, tags }: { hack: Hackathon; tags: string[] }) => {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      variants={cardVariants}
-      className="group relative overflow-visible rounded-2xl"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative overflow-hidden rounded-[1.5rem] bg-[var(--color-border)] p-[1px] transition-all duration-300 hover:shadow-[0_16px_48px_rgba(var(--color-primary-rgb),0.06)]"
     >
+      {/* Spotlight Border Glow */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(var(--color-primary-rgb), 0.15), transparent 80%)`
+        }}
+      />
+
       <div
-        className="hackathon-card-inner w-full h-full p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-250 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-450 dark:hover:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-transparent dark:hover:brushed-metal-dark transition-all duration-300 ease-out flex flex-col justify-between cursor-default"
+        className="hackathon-card-inner w-full h-full p-6 sm:p-8 bg-[var(--color-surface)] group-hover:bg-[var(--card-bg)] rounded-[1.45rem] transition-all duration-300 ease-out flex flex-col justify-between cursor-default relative overflow-hidden"
         style={{
           transformStyle: "preserve-3d",
         }}
       >
+        {/* Spotlight Background Glow */}
+        <div 
+          className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          style={{
+            background: `radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(var(--color-primary-rgb), 0.04), transparent 40%)`
+          }}
+        />
+
         <div style={{ transform: "translateZ(20px)" }}>
-          {/* Top Accent with status LED */}
-          <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 dark:text-neutral-500 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 dark:border-neutral-850 pb-2">
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_4px_#10b981] animate-pulse" />
-              <span>MODULE REC_0{hack.id}</span>
-            </div>
+
+          {/* Top Accent with Date */}
+          <div className="flex justify-between items-center text-[8px] font-mono text-[var(--color-text-muted)] font-extrabold uppercase tracking-widest mb-4 border-b border-[var(--color-border)] pb-2 relative z-10">
+            <span>Hackathon</span>
             <span>{hack.date}</span>
           </div>
 
-          <div className="flex items-center gap-2.5 mb-3.5">
+          <div className="flex items-center gap-2.5 mb-3.5 relative z-10">
             <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500">
               {hack.id === 1 ? <Code className="w-4.5 h-4.5" /> : hack.id === 2 ? <Cpu className="w-4.5 h-4.5" /> : <Trophy className="w-4.5 h-4.5" />}
             </div>
             <div className="leading-tight">
-              <h3 className="text-sm font-bold text-neutral-850 dark:text-neutral-100 uppercase tracking-wide">
+              <h3 className="text-sm font-bold text-[var(--color-text)] uppercase tracking-wide">
                 {hack.title}
               </h3>
-              <span className="text-[10px] text-neutral-450 dark:text-neutral-400 font-mono font-bold block mt-0.5">
+              <span className="text-[10px] text-[var(--color-text-muted)] font-mono font-bold block mt-0.5">
                 {hack.subtitle || "Algorithmic Bootcamp"}
               </span>
             </div>
           </div>
 
           {/* Tech Badges */}
-          <div className="flex flex-wrap gap-1 mb-4.5">
+          <div className="flex flex-wrap gap-1 mb-4.5 relative z-10">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-[8px] font-mono font-extrabold uppercase tracking-wider px-2 py-0.5 rounded border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 text-neutral-500 dark:text-neutral-400"
+                className="text-[8px] font-mono font-extrabold uppercase tracking-wider px-2 py-0.5 rounded border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text-muted)]"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <p className="text-xs leading-relaxed text-neutral-600 dark:text-neutral-400 line-clamp-4 font-medium mb-6">
+          <p className="text-xs leading-relaxed text-[var(--color-text-muted)] line-clamp-4 font-medium mb-6 relative z-10">
             {hack.description}
           </p>
         </div>
 
         {/* Actions Area */}
         <div 
-          className="flex items-center gap-2.5 pt-2 border-t border-neutral-200 dark:border-neutral-850"
+          className="flex items-center gap-2.5 pt-4 border-t border-[var(--color-border)] relative z-10"
           style={{ transform: "translateZ(30px)" }}
         >
           {hack.github && (
@@ -116,9 +128,9 @@ const HackathonCard = ({ hack, tags }: { hack: Hackathon; tags: string[] }) => {
               href={hack.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-grow flex items-center justify-center gap-1.5 px-3 py-2 text-[9px] font-mono font-black uppercase tracking-wider border border-neutral-300 dark:border-neutral-750 text-neutral-650 dark:text-neutral-350 hover:text-neutral-950 dark:hover:text-neutral-100 hover:bg-neutral-100 dark:hover:bg-neutral-950 rounded-lg transition-colors cursor-pointer"
+              className="px-4 py-2 rounded-xl border border-[var(--color-border)] text-[10px] font-bold uppercase tracking-widest transition-all duration-250 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] flex items-center gap-1.5"
             >
-              <Terminal className="w-3.5 h-3.5" /> Code
+              <Github className="w-3.5 h-3.5" /> Github
             </a>
           )}
           {hack.link && (
@@ -126,9 +138,9 @@ const HackathonCard = ({ hack, tags }: { hack: Hackathon; tags: string[] }) => {
               href={hack.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-grow flex items-center justify-center gap-1.5 px-3 py-2 text-[9px] font-mono font-black uppercase tracking-wider bg-neutral-900 text-white dark:bg-white dark:text-black hover:bg-neutral-800 dark:hover:bg-neutral-100 rounded-lg transition-all shadow-sm cursor-pointer"
+              className="px-4 py-2 rounded-xl bg-[var(--color-primary)] text-[var(--color-bg)] text-[10px] font-bold uppercase tracking-widest transition-all duration-250 hover:bg-[var(--color-primary-mid)] flex items-center gap-1.5 shadow-sm"
             >
-              Verify Cert
+              Momento <Award className="w-3.5 h-3.5" />
             </a>
           )}
         </div>
@@ -140,13 +152,7 @@ const HackathonCard = ({ hack, tags }: { hack: Hackathon; tags: string[] }) => {
 export const Hackathons = () => {
   const hackList = (portfolioData.hackathons || []) as Hackathon[];
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12 }
-    }
-  };
+  // containerVariants removed
 
   const getTechTags = (id: number): string[] => {
     if (id === 1) return ["C", "Algorithms", "Optimization", "Structures"];
@@ -160,7 +166,7 @@ export const Hackathons = () => {
     <section
       id="hackathons"
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
-      style={{ backgroundColor: "var(--color-bg)", borderTop: "1px solid var(--color-border)" }}
+      style={{ borderTop: "1px solid var(--color-border)" }}
     >
       {/* Background Subtle Blobs */}
       <div className="absolute top-1/3 left-0 pointer-events-none" style={{ width: "clamp(150px,30vw,350px)", height: "clamp(150px,30vw,350px)", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(70px)" }} />
@@ -177,8 +183,8 @@ export const Hackathons = () => {
                 <p className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: "var(--color-primary)" }}>ACHIEVEMENTS</p>
               </div>
               <h2
-                className="font-bold tracking-tighter text-neutral-900 dark:text-neutral-100"
-                style={{ fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
+                className="font-bold tracking-tighter"
+                style={{ color: "var(--color-text)", fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
               >
                 <MaskText>Hackathon Portal.</MaskText>
               </h2>
@@ -189,21 +195,16 @@ export const Hackathons = () => {
           </ScrollReveal>
 
           {/* Cards Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6"
-          >
-            {hackList.map((hack) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+            {hackList.map((hack, idx) => (
               <HackathonCard
                 key={hack.id}
                 hack={hack}
                 tags={getTechTags(hack.id)}
+                idx={idx}
               />
             ))}
-          </motion.div>
+          </div>
 
         </div>
       </div>

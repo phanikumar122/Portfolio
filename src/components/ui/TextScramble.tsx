@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const chars = "!<>-_\\/[]{}—=+*^?#________";
 
 export const TextScramble = ({ text, delay = 0 }: { text: string; delay?: number }) => {
-  const [displayText, setDisplayText] = useState("");
+  const containerRef = useRef<HTMLSpanElement>(null);
   const frame = useRef(0);
   const queue = useRef<{ from: string; to: string; start: number; end: number; char?: string }[]>([]);
   const requestRef = useRef<number | undefined>(undefined);
@@ -40,7 +40,9 @@ export const TextScramble = ({ text, delay = 0 }: { text: string; delay?: number
             output += item.from;
           }
         }
-        setDisplayText(output);
+        if (containerRef.current) {
+          containerRef.current.innerHTML = output;
+        }
         if (complete === queue.current.length) {
           if (requestRef.current) cancelAnimationFrame(requestRef.current);
         } else {
@@ -57,5 +59,5 @@ export const TextScramble = ({ text, delay = 0 }: { text: string; delay?: number
     };
   }, [text, delay]);
 
-  return <span dangerouslySetInnerHTML={{ __html: displayText }} />;
+  return <span ref={containerRef} />;
 };

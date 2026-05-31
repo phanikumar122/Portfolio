@@ -4,6 +4,12 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dynamic from "next/dynamic";
+
+const CanvasBackground = dynamic(
+  () => import("@/components/ui/CanvasBackground").then((mod) => mod.CanvasBackground),
+  { ssr: false }
+);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,9 +27,10 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
+    const updateLenis = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+    gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0);
 
     // Global anchor click scroll event interceptor
@@ -51,11 +58,17 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
 
     return () => {
       document.removeEventListener("click", handleAnchorClick, { capture: true });
+      gsap.ticker.remove(updateLenis);
       (window as any).lenis = undefined;
       lenis.destroy();
       gsap.ticker.lagSmoothing(1);
     };
   }, []);
 
-  return <>{children}</>;
+  return (
+    <>
+      <CanvasBackground />
+      {children}
+    </>
+  );
 };

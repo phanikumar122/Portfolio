@@ -41,30 +41,13 @@ const defaultMeta = {
 };
 
 export const Certificates = () => {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  };
-
-  const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
+  // cardVariants removed
 
   return (
     <section
       id="certificates"
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
       style={{
-        backgroundColor: "var(--color-surface)",
         borderTop: "1px solid var(--color-border)",
         borderBottom: "1px solid var(--color-border)",
       }}
@@ -120,14 +103,8 @@ export const Certificates = () => {
           </ScrollReveal>
 
           {/* Certificate Cards Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
-          >
-            {portfolioData.certificates.map((cert) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {portfolioData.certificates.map((cert, idx) => {
               const meta = issuerMeta[cert.issuer] ?? defaultMeta;
               return (
                 <motion.a
@@ -135,7 +112,10 @@ export const Certificates = () => {
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variants={cardVariants}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   className="group relative flex flex-col justify-between p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-400 dark:hover:border-neutral-600 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
                 >
                   {/* Top accent line */}
@@ -182,7 +162,7 @@ export const Certificates = () => {
                 </motion.a>
               );
             })}
-          </motion.div>
+          </div>
 
         </div>
       </div>
