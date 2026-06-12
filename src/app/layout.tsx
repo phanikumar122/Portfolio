@@ -1,8 +1,7 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 
@@ -29,11 +28,12 @@ export const metadata: Metadata = {
   title: "Phani Kumar | Portfolio",
   description:
     "Technical Engineer & Creative Developer — Building high-performance digital products.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    viewportFit: "cover",
-  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#0A0A0A",
 };
 
@@ -56,7 +56,6 @@ export default function RootLayout({
         >
           <SmoothScroll>
             <NoiseOverlay />
-            <ScrollProgress />
             {children}
           </SmoothScroll>
         </ThemeProvider>

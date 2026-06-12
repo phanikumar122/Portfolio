@@ -18,11 +18,9 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted]   = useState(false);
   const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
-    setTimeout(() => setMounted(true), 0);
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     onScroll();

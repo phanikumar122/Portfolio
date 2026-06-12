@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ExternalLink, Award, Shield, Code2 } from "lucide-react";
 import { MaskText } from "@/components/ui/MaskText";

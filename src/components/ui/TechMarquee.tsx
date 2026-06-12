@@ -40,7 +40,7 @@ export const TechMarquee = () => {
                 {tech}
               </span>
               <span className="text-[var(--color-text-muted)] opacity-10 text-base sm:text-xl font-bold select-none">
-                //
+                {"//"}
               </span>
             </div>
           ))}

@@ -219,20 +219,6 @@
   .bg-surface { background-color: var(--color-surface); }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   SCROLL PROGRESS
-   ───────────────────────────────────────────────────────────── */
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-primary);
-  box-shadow: 0 0 8px var(--color-glow);
-  z-index: 9999;
-  transform-origin: 0%;
-}
 
 /* ─────────────────────────────────────────────────────────────
    SCROLLBAR

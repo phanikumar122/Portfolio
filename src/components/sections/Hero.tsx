@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, Mail, FileText, Sparkles, MapPin } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
-import { TextScramble } from "@/components/ui/TextScramble";
 
 
 const FloatingOrb = ({
@@ -67,7 +66,7 @@ export const Hero = () => {
                 }}
               >
                 <Sparkles className="w-3 h-3 shrink-0" />
-                <TextScramble text="Technical Engineer & Creative Developer" delay={0.15} />
+                Technical Engineer & Creative Developer
               </span>
             </motion.div>
 
@@ -96,7 +95,7 @@ export const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
                 className="italic inline-block glow-text"
               >
-                <TextScramble text="Phani." delay={0.6} />
+                Phani.
               </motion.span>
             </motion.h1>
 
