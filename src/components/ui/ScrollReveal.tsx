@@ -23,12 +23,14 @@ export const ScrollReveal = ({
   className,
 }: ScrollRevealProps) => {
   const isStaggerContainer = staggerChildren !== undefined;
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
+  const activeBlur = isMobile ? "" : blur;
 
   const variants: Variants = {
     hidden: {
       opacity: 0,
       y: yOffset,
-      filter: blur ? `blur(${blur})` : "none",
+      filter: activeBlur ? `blur(${activeBlur})` : "none",
     },
     visible: {
       opacity: 1,
@@ -47,7 +49,7 @@ export const ScrollReveal = ({
     hidden: {
       opacity: 0,
       y: yOffset,
-      filter: blur ? `blur(${blur})` : "none",
+      filter: activeBlur ? `blur(${activeBlur})` : "none",
     },
     visible: {
       opacity: 1,

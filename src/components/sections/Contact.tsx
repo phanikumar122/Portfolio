@@ -16,10 +16,10 @@ export const Contact = () => {
       description: "Send a direct message payload to my official inbox.",
       actionText: "Send Email",
       icon: <Mail className="w-5 h-5" />,
-      colorClass: "text-red-500",
-      bgClass: "bg-red-500/10",
-      borderClass: "border-red-500/20",
-      glowClass: "rgba(239, 68, 68, 0.08)",
+      colorClass: "text-red-600",
+      bgClass: "bg-red-50",
+      borderClass: "border-red-200/60",
+      glowClass: "rgba(239, 68, 68, 0.03)",
     },
     {
       name: "GitHub",
@@ -28,10 +28,10 @@ export const Contact = () => {
       description: "Inspect source repositories, Move/Flutter modules, and projects.",
       actionText: "Explore Repos",
       icon: <Github className="w-5 h-5" />,
-      colorClass: "text-indigo-500",
-      bgClass: "bg-indigo-500/10",
-      borderClass: "border-indigo-500/20",
-      glowClass: "rgba(99, 102, 241, 0.08)",
+      colorClass: "text-indigo-650",
+      bgClass: "bg-indigo-50",
+      borderClass: "border-indigo-200/60",
+      glowClass: "rgba(99, 102, 241, 0.03)",
     },
     {
       name: "LinkedIn",
@@ -40,10 +40,10 @@ export const Contact = () => {
       description: "Establish professional connection on global ecosystems.",
       actionText: "Connect Profile",
       icon: <Linkedin className="w-5 h-5" />,
-      colorClass: "text-blue-500",
-      bgClass: "bg-blue-500/10",
-      borderClass: "border-blue-500/20",
-      glowClass: "rgba(59, 130, 246, 0.08)",
+      colorClass: "text-blue-600",
+      bgClass: "bg-blue-50",
+      borderClass: "border-blue-200/60",
+      glowClass: "rgba(59, 130, 246, 0.03)",
     },
   ];
 
@@ -103,11 +103,11 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col justify-between p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-450 dark:hover:border-neutral-700 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                className="group relative flex flex-col justify-between p-5 sm:p-6 bg-white border border-neutral-200 rounded-2xl shadow-[var(--card-shadow)] hover:border-[var(--color-primary)]/30 hover:shadow-[var(--shadow-md)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
               >
                 {/* Content */}
                 <div>
-                  <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 dark:text-neutral-500 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+                  <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 pb-2">
                     <span>GATEWAY SECURE</span>
                     <span>{chan.name}</span>
                   </div>
@@ -120,22 +120,22 @@ export const Contact = () => {
                       {chan.icon}
                     </div>
                     <div>
-                      <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
+                      <h3 className="text-sm font-bold text-neutral-900 leading-snug">
                         {chan.name}
                       </h3>
-                      <span className="text-[10px] font-mono font-bold text-neutral-400 dark:text-neutral-500 block mt-0.5 truncate max-w-[200px] sm:max-w-[160px]">
+                      <span className="text-[10px] font-mono font-bold text-neutral-500 block mt-0.5 truncate max-w-[200px] sm:max-w-[160px]">
                         {chan.value}
                       </span>
                     </div>
                   </div>
 
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400 leading-relaxed font-medium mb-6">
+                  <p className="text-xs text-neutral-550 leading-relaxed font-medium mb-6">
                     {chan.description}
                   </p>
                 </div>
 
                 {/* Footer action */}
-                <div className="flex items-center justify-end pt-3 border-t border-neutral-200 dark:border-neutral-800 mt-auto">
+                <div className="flex items-center justify-end pt-3 border-t border-neutral-200 mt-auto">
                   <span
                     className={`flex items-center gap-1.5 text-[9px] font-mono font-black uppercase tracking-wider ${chan.colorClass}`}
                   >

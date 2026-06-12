@@ -25,8 +25,11 @@ export const CanvasBackground = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.appendChild(renderer.domElement);
 
-    // 2. Setup Particles
-    const particleCount = 90;
+    // 2. Setup Particles - dynamically scaled down on mobile viewports for lag-free scrolling
+    const isMobileViewport = window.innerWidth <= 768;
+    const particleCount = isMobileViewport ? 35 : 90;
+    const maxConnections = isMobileViewport ? 120 : 400;
+
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const velocities: number[] = [];
@@ -53,19 +56,19 @@ export const CanvasBackground = () => {
     const ctx = canvas.getContext("2d");
     if (ctx) {
       const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-      grad.addColorStop(0, "rgba(255, 255, 255, 1)");
-      grad.addColorStop(1, "rgba(255, 255, 255, 0)");
+      grad.addColorStop(0, "rgba(37, 99, 235, 1)");
+      grad.addColorStop(1, "rgba(37, 99, 235, 0)");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, 16, 16);
     }
     const texture = new THREE.CanvasTexture(canvas);
 
     const material = new THREE.PointsMaterial({
-      size: 3.5,
+      size: 4.5,
       map: texture,
       transparent: true,
-      opacity: 0.3,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.45,
+      blending: THREE.NormalBlending,
       depthWrite: false,
     });
 
@@ -74,14 +77,13 @@ export const CanvasBackground = () => {
 
     // 3. Dynamic Lines Setup
     const lineMaterial = new THREE.LineBasicMaterial({
-      color: 0xffffff,
+      color: 0x2563eb,
       transparent: true,
-      opacity: 0.06,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.12,
+      blending: THREE.NormalBlending,
       depthWrite: false,
     });
 
-    const maxConnections = 400;
     const linePositions = new Float32Array(maxConnections * 2 * 3);
     const lineGeometry = new THREE.BufferGeometry();
     lineGeometry.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));

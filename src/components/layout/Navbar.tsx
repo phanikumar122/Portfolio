@@ -22,7 +22,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -123,11 +123,10 @@ export const Navbar = () => {
                   {isActive && (
                     <motion.span
                       layoutId="activeNavPill"
-                      className="absolute inset-0 rounded-lg -z-10"
+                      className="absolute inset-0 rounded-xl -z-10"
                       style={{
-                        background: "var(--color-surface)",
-                        border: "1px solid var(--color-border)",
-                        boxShadow: "0 2px 8px var(--color-glow)",
+                        background: "rgba(37, 99, 235, 0.05)",
+                        border: "1px solid rgba(37, 99, 235, 0.12)",
                       }}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -218,7 +217,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden overflow-hidden"
+            className="md:hidden overflow-y-auto max-h-[calc(100vh-70px)]"
             style={{
               background: "var(--nav-bg)",
               backdropFilter: "blur(24px)",

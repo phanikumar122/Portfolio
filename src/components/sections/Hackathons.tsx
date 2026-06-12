@@ -35,7 +35,7 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
     const y = mouseYPos / rect.height - 0.5;
     const el = cardRef.current.querySelector(".hackathon-card-inner") as HTMLElement;
     if (el) {
-      el.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
+      el.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${y * -6}deg)`;
     }
   };
 
@@ -43,6 +43,26 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
     const el = cardRef.current?.querySelector(".hackathon-card-inner") as HTMLElement;
     if (el) {
       el.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
+    }
+  };
+
+  const getIcon = () => {
+    switch (hack.id) {
+      case 1: return <Code className="w-4.5 h-4.5" />;
+      case 2: return <Cpu className="w-4.5 h-4.5" />;
+      case 3: return <Trophy className="w-4.5 h-4.5" />;
+      case 4: return <Award className="w-4.5 h-4.5" />;
+      default: return <Trophy className="w-4.5 h-4.5" />;
+    }
+  };
+
+  const getIconStyle = () => {
+    switch (hack.id) {
+      case 1: return "text-blue-600 bg-blue-500/[0.04] border border-blue-500/[0.12]";
+      case 2: return "text-indigo-600 bg-indigo-500/[0.04] border border-indigo-500/[0.12]";
+      case 3: return "text-slate-600 bg-slate-500/[0.04] border border-slate-500/[0.12]";
+      case 4: return "text-blue-600 bg-blue-500/[0.04] border border-blue-500/[0.12]";
+      default: return "text-blue-600 bg-blue-500/[0.04] border border-blue-500/[0.12]";
     }
   };
 
@@ -55,13 +75,13 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 1, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative overflow-hidden rounded-[1.5rem] bg-[var(--color-border)] p-[1px] transition-all duration-300 hover:shadow-[0_16px_48px_rgba(var(--color-primary-rgb),0.06)]"
+      className="group relative overflow-hidden rounded-[1.5rem] bg-[var(--color-border)] p-[1px] transition-all duration-300 hover:shadow-[var(--shadow-md)]"
     >
       {/* Spotlight Border Glow */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(var(--color-primary-rgb), 0.15), transparent 80%)`
+          background: `radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(var(--color-primary-rgb), 0.12), transparent 80%)`
         }}
       />
 
@@ -75,7 +95,7 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
         <div 
           className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{
-            background: `radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(var(--color-primary-rgb), 0.04), transparent 40%)`
+            background: `radial-gradient(600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(var(--color-primary-rgb), 0.03), transparent 40%)`
           }}
         />
 
@@ -83,13 +103,13 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
 
           {/* Top Accent with Date */}
           <div className="flex justify-between items-center text-[8px] font-mono text-[var(--color-text-muted)] font-extrabold uppercase tracking-widest mb-4 border-b border-[var(--color-border)] pb-2 relative z-10">
-            <span>Hackathon</span>
+            <span>Hackathon Winner</span>
             <span>{hack.date}</span>
           </div>
 
           <div className="flex items-center gap-2.5 mb-3.5 relative z-10">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500">
-              {hack.id === 1 ? <Code className="w-4.5 h-4.5" /> : hack.id === 2 ? <Cpu className="w-4.5 h-4.5" /> : <Trophy className="w-4.5 h-4.5" />}
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${getIconStyle()}`}>
+              {getIcon()}
             </div>
             <div className="leading-tight">
               <h3 className="text-sm font-bold text-[var(--color-text)] uppercase tracking-wide">
@@ -128,9 +148,10 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
               href={hack.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl border border-[var(--color-border)] text-[10px] font-bold uppercase tracking-widest transition-all duration-250 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] flex items-center gap-1.5"
+              className="px-4 py-2.5 rounded-xl border border-[var(--color-border)] bg-white text-[10px] font-extrabold uppercase tracking-widest transition-all duration-250 hover:bg-[var(--color-primary)] hover:text-white hover:border-[var(--color-primary)] flex items-center gap-1.5"
+              style={{ minHeight: "36px" }}
             >
-              <Github className="w-3.5 h-3.5" /> Github
+              <Github className="w-3.5 h-3.5" /> Source
             </a>
           )}
           {hack.link && (
@@ -138,9 +159,10 @@ const HackathonCard = ({ hack, tags, idx }: { hack: Hackathon; tags: string[]; i
               href={hack.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-xl bg-[var(--color-primary)] text-[var(--color-bg)] text-[10px] font-bold uppercase tracking-widest transition-all duration-250 hover:bg-[var(--color-primary-mid)] flex items-center gap-1.5 shadow-sm"
+              className="px-4 py-2.5 rounded-xl bg-[var(--color-primary)] text-white text-[10px] font-extrabold uppercase tracking-widest transition-all duration-250 hover:bg-[var(--color-primary-mid)] flex items-center gap-1.5 shadow-xs"
+              style={{ minHeight: "36px" }}
             >
-              Momento <Award className="w-3.5 h-3.5" />
+              Memento <Award className="w-3.5 h-3.5" />
             </a>
           )}
         </div>

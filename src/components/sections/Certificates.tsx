@@ -8,35 +8,35 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const issuerMeta: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
   Cisco: {
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-    border: "border-blue-500/20",
+    color: "text-blue-600",
+    bg: "bg-blue-50",
+    border: "border-blue-200/60",
     icon: <Shield className="w-4 h-4" />,
   },
   "Red Hat": {
-    color: "text-red-500",
-    bg: "bg-red-500/10",
-    border: "border-red-500/20",
+    color: "text-red-650",
+    bg: "bg-red-50",
+    border: "border-red-200/60",
     icon: <Code2 className="w-4 h-4" />,
   },
   Udemy: {
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
-    border: "border-orange-500/20",
+    color: "text-orange-600",
+    bg: "bg-orange-50",
+    border: "border-orange-200/60",
     icon: <Award className="w-4 h-4" />,
   },
   AWS: {
-    color: "text-amber-500",
-    bg: "bg-amber-500/10",
-    border: "border-amber-500/20",
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    border: "border-amber-200/60",
     icon: <Award className="w-4 h-4" />,
   },
 };
 
 const defaultMeta = {
-  color: "text-indigo-500",
-  bg: "bg-indigo-500/10",
-  border: "border-indigo-500/20",
+  color: "text-indigo-600",
+  bg: "bg-indigo-50",
+  border: "border-indigo-200/60",
   icon: <Award className="w-4 h-4" />,
 };
 
@@ -88,8 +88,8 @@ export const Certificates = () => {
                 </p>
               </div>
               <h2
-                className="font-bold tracking-tighter text-neutral-900 dark:text-neutral-100"
-                style={{ fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
+                className="font-bold tracking-tighter"
+                style={{ color: "var(--color-text)", fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
               >
                 <MaskText>Recognition. Verified.</MaskText>
               </h2>
@@ -116,10 +116,10 @@ export const Certificates = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex flex-col justify-between p-5 sm:p-6 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm hover:border-neutral-400 dark:hover:border-neutral-600 hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                  className="group relative flex flex-col justify-between p-5 sm:p-6 bg-white border border-neutral-200 rounded-2xl shadow-[var(--card-shadow)] hover:border-[var(--color-primary)]/30 hover:shadow-[var(--shadow-md)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
                 >
                   {/* Top accent line */}
-                  <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 dark:text-neutral-500 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 dark:border-neutral-800 pb-2">
+                  <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 pb-2">
                     <span>CREDENTIAL #{String(cert.id).padStart(2, "0")}</span>
                     <span>{cert.date}</span>
                   </div>
@@ -132,7 +132,7 @@ export const Certificates = () => {
                       {meta.icon}
                     </div>
                     <div className="leading-tight">
-                      <h3 className="text-sm font-bold text-neutral-900 dark:text-neutral-100 leading-snug">
+                      <h3 className="text-sm font-bold text-neutral-900 leading-snug">
                         {cert.title}
                       </h3>
                       <span className={`text-[10px] font-mono font-bold block mt-0.5 ${meta.color}`}>
@@ -142,8 +142,8 @@ export const Certificates = () => {
                   </div>
 
                   {/* Footer action */}
-                  <div className="flex items-center justify-between pt-3 border-t border-neutral-200 dark:border-neutral-800 mt-auto">
-                    <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+                  <div className="flex items-center justify-between pt-3 border-t border-neutral-200 mt-auto">
+                    <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-neutral-400">
                       Verified · {cert.date}
                     </span>
                     <span
@@ -156,7 +156,7 @@ export const Certificates = () => {
                   {/* Hover shimmer */}
                   <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
-                      background: "linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.03) 100%)"
+                      background: "linear-gradient(135deg, transparent 40%, rgba(37,99,235,0.02) 100%)"
                     }}
                   />
                 </motion.a>
