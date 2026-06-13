@@ -8,27 +8,27 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const issuerMeta: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
   Cisco: {
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-    border: "border-blue-200/60",
+    color: "text-[var(--color-accent)]",
+    bg: "bg-[rgba(56,90,82,0.04)]",
+    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     icon: <Shield className="w-4 h-4" />,
   },
   "Red Hat": {
-    color: "text-red-650",
-    bg: "bg-red-50",
-    border: "border-red-200/60",
+    color: "text-[var(--color-primary)]",
+    bg: "bg-[rgba(var(--color-primary-rgb),0.04)]",
+    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     icon: <Code2 className="w-4 h-4" />,
   },
   Udemy: {
-    color: "text-orange-600",
-    bg: "bg-orange-50",
-    border: "border-orange-200/60",
+    color: "text-neutral-600",
+    bg: "bg-[rgba(140,138,133,0.04)]",
+    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     icon: <Award className="w-4 h-4" />,
   },
   AWS: {
-    color: "text-amber-600",
-    bg: "bg-amber-50",
-    border: "border-amber-200/60",
+    color: "text-[var(--color-primary)]",
+    bg: "bg-[rgba(var(--color-primary-rgb),0.04)]",
+    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     icon: <Award className="w-4 h-4" />,
   },
 };
@@ -36,21 +36,15 @@ const issuerMeta: Record<string, { color: string; bg: string; border: string; ic
 const defaultMeta = {
   color: "text-indigo-600",
   bg: "bg-indigo-50",
-  border: "border-indigo-200/60",
+  border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
   icon: <Award className="w-4 h-4" />,
 };
 
 export const Certificates = () => {
-  // cardVariants removed
-
   return (
     <section
       id="certificates"
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
-      style={{
-        borderTop: "1px solid var(--color-border)",
-        borderBottom: "1px solid var(--color-border)",
-      }}
     >
       {/* Background Blobs */}
       <div
@@ -116,18 +110,17 @@ export const Certificates = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex flex-col justify-between p-5 sm:p-6 bg-white border border-neutral-200 rounded-2xl shadow-[var(--card-shadow)] hover:border-[var(--color-primary)]/30 hover:shadow-[var(--shadow-md)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                  className="card-elevated group relative flex flex-col justify-between p-5 sm:p-6 cursor-pointer"
                 >
                   {/* Top accent line */}
-                  <div className="flex justify-between items-center text-[8px] font-mono text-neutral-400 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 pb-2">
-                    <span>CREDENTIAL #{String(cert.id).padStart(2, "0")}</span>
+                  <div className="flex justify-end items-center text-[8px] font-mono text-neutral-400 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 pb-2">
                     <span>{cert.date}</span>
                   </div>
 
                   {/* Issuer icon + title */}
                   <div className="flex items-start gap-3 mb-4">
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 border ${meta.bg} ${meta.border} ${meta.color}`}
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${meta.bg} ${meta.border} ${meta.color}`}
                     >
                       {meta.icon}
                     </div>
@@ -152,13 +145,6 @@ export const Certificates = () => {
                       View <ExternalLink className="w-3 h-3" />
                     </span>
                   </div>
-
-                  {/* Hover shimmer */}
-                  <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{
-                      background: "linear-gradient(135deg, transparent 40%, rgba(37,99,235,0.02) 100%)"
-                    }}
-                  />
                 </motion.a>
               );
             })}

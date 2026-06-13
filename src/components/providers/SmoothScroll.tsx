@@ -4,12 +4,6 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import dynamic from "next/dynamic";
-
-const CanvasBackground = dynamic(
-  () => import("@/components/ui/CanvasBackground").then((mod) => mod.CanvasBackground),
-  { ssr: false }
-);
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,7 +61,6 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <CanvasBackground />
       {children}
     </>
   );

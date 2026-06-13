@@ -6,8 +6,6 @@ import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export const Contact = () => {
-  // cardVariants removed
-
   const channels = [
     {
       name: "Gmail",
@@ -16,10 +14,9 @@ export const Contact = () => {
       description: "Send a direct message payload to my official inbox.",
       actionText: "Send Email",
       icon: <Mail className="w-5 h-5" />,
-      colorClass: "text-red-600",
-      bgClass: "bg-red-50",
-      borderClass: "border-red-200/60",
-      glowClass: "rgba(239, 68, 68, 0.03)",
+      colorClass: "text-[var(--color-primary)]",
+      bgClass: "bg-[rgba(var(--color-primary-rgb),0.04)]",
+      borderClass: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     },
     {
       name: "GitHub",
@@ -28,10 +25,9 @@ export const Contact = () => {
       description: "Inspect source repositories, Move/Flutter modules, and projects.",
       actionText: "Explore Repos",
       icon: <Github className="w-5 h-5" />,
-      colorClass: "text-indigo-650",
-      bgClass: "bg-indigo-50",
-      borderClass: "border-indigo-200/60",
-      glowClass: "rgba(99, 102, 241, 0.03)",
+      colorClass: "text-neutral-700",
+      bgClass: "bg-[rgba(140,138,133,0.04)]",
+      borderClass: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     },
     {
       name: "LinkedIn",
@@ -40,10 +36,9 @@ export const Contact = () => {
       description: "Establish professional connection on global ecosystems.",
       actionText: "Connect Profile",
       icon: <Linkedin className="w-5 h-5" />,
-      colorClass: "text-blue-600",
-      bgClass: "bg-blue-50",
-      borderClass: "border-blue-200/60",
-      glowClass: "rgba(59, 130, 246, 0.03)",
+      colorClass: "text-[var(--color-accent)]",
+      bgClass: "bg-[rgba(56,90,82,0.04)]",
+      borderClass: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
     },
   ];
 
@@ -51,7 +46,6 @@ export const Contact = () => {
     <section
       id="contact"
       className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
-      style={{ borderTop: "1px solid var(--color-border)" }}
     >
       {/* Background radial glow */}
       <div
@@ -85,7 +79,7 @@ export const Contact = () => {
               Connect With <span className="italic glow-text">Me.</span>
             </h2>
             <p
-              className="text-sm sm:text-base leading-relaxed font-medium text-neutral-500 dark:text-neutral-400"
+              className="text-sm sm:text-base leading-relaxed font-medium text-neutral-500"
             >
               Open for architectural consultation, backend logic engineering, and remote collaboration. Choose your preferred gateway below.
             </p>
@@ -103,7 +97,7 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col justify-between p-5 sm:p-6 bg-white border border-neutral-200 rounded-2xl shadow-[var(--card-shadow)] hover:border-[var(--color-primary)]/30 hover:shadow-[var(--shadow-md)] hover:-translate-y-1.5 transition-all duration-300 cursor-pointer"
+                className="card-elevated group relative flex flex-col justify-between p-5 sm:p-6 cursor-pointer"
               >
                 {/* Content */}
                 <div>
@@ -115,7 +109,8 @@ export const Contact = () => {
                   {/* Icon + Title */}
                   <div className="flex items-center gap-3 mb-4">
                     <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${chan.bgClass} ${chan.borderClass} ${chan.colorClass}`}
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border-2 border-[var(--neutral-900)] ${chan.bgClass} ${chan.colorClass}`}
+                      style={{ boxShadow: "1px 1px 0px #18181A" }}
                     >
                       {chan.icon}
                     </div>
@@ -129,7 +124,7 @@ export const Contact = () => {
                     </div>
                   </div>
 
-                  <p className="text-xs text-neutral-550 leading-relaxed font-medium mb-6">
+                  <p className="text-xs text-neutral-500 leading-relaxed font-medium mb-6">
                     {chan.description}
                   </p>
                 </div>
@@ -142,14 +137,6 @@ export const Contact = () => {
                     {chan.actionText} <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </span>
                 </div>
-
-                {/* Custom hover glow */}
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    background: `linear-gradient(135deg, transparent 50%, ${chan.glowClass} 100%)`,
-                  }}
-                />
               </motion.a>
             ))}
           </div>

@@ -38,14 +38,6 @@ export const portfolioData = {
   ],
   projects: [
     {
-      id: 1,
-      title: "EduConnect",
-      description: "EduConnect is a premium, full-stack educational platform designed to bridge the communication gap between parents and teachers. With specialized dashboards for Mentors, Subject Teachers, and Parents, it provides real-time analytics, attendance tracking, and performance monitoring in a sleek, modern interface. ",
-      tech: ["React", "Node.js", "MongoDB", "JWT",         "bcrypt"],
-      github: "https://github.com/phanikumar122/Edutech",
-      demo: "https://cybersoul18-edutech.hf.space/",
-    },
-    {
       id: 2,
       title: "Skill Tern",
       description: "A full-stack web application that connects students and companies for internships using a rule-based matching system. Built with Node.js, Express, MongoDB, and vanilla JavaScript.",

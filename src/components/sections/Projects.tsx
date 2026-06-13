@@ -8,13 +8,6 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 export const Projects = () => {
   const projects = portfolioData.projects;
 
-  // Grouping project IDs manually to establish premium visual hierarchy
-  const featuredProject = projects.find((p) => p.id === 1); // EduConnect
-  const majorProjects = projects.filter((p) => [2, 4].includes(p.id)); // Skill Tern, Syllabi-AI
-  const standaloneMajorProject = projects.find((p) => p.id === 5); // TruthLens (SRM Hackathon Win)
-  const standaloneHardwareProject = projects.find((p) => p.id === 7); // Smart Hand Rehab
-  const minorProjects = projects.filter((p) => [3, 6].includes(p.id)); // ToDo App, Decentralized Network
-
   return (
     <section
       id="projects"
@@ -41,43 +34,11 @@ export const Projects = () => {
             </h2>
           </ScrollReveal>
 
-          {/* ── UNIFIED LAYOUT GRID (6-Column Grid System) ── */}
-          <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 lg:gap-8">
-            {featuredProject && (
-              <div className="col-span-1 lg:col-span-6">
-                <ProjectCard project={featuredProject} idx={0} layoutSize="featured" />
-              </div>
-            )}
-
-            {majorProjects.map((project, idx) => (
-              <div key={project.id} className="col-span-1 lg:col-span-3">
-                <ProjectCard project={project} idx={idx + 1} layoutSize="major" />
-              </div>
-            ))}
-
-            {standaloneMajorProject && (
-              <div className="col-span-1 lg:col-span-6">
-                <ProjectCard project={standaloneMajorProject} idx={3} layoutSize="featured" />
-              </div>
-            )}
-
-            {standaloneHardwareProject && (
-              <div className="col-span-1 lg:col-span-6">
-                <ProjectCard project={standaloneHardwareProject} idx={4} layoutSize="featured" />
-              </div>
-            )}
-
-            {/* Additional Works Section Divider */}
-            <div className="col-span-1 lg:col-span-6 mt-4">
-              <div className="flex items-center gap-3 mb-2 border-b border-[var(--color-border)] pb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]" />
-                <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--color-accent)]">Additional Works</span>
-              </div>
-            </div>
-
-            {minorProjects.map((project, idx) => (
-              <div key={project.id} className="col-span-1 md:col-span-3 lg:col-span-2">
-                <ProjectCard project={project} idx={idx + 5} layoutSize="minor" />
+          {/* 3-Column Grid of All Projects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            {projects.map((project, idx) => (
+              <div key={project.id} className="col-span-1 flex">
+                <ProjectCard project={project} idx={idx} layoutSize="major" />
               </div>
             ))}
           </div>

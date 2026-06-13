@@ -3,8 +3,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-inter);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-outfit);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -14,55 +14,55 @@
  ───────────────────────────────────────────────────────────── */
 :root {
   /* Backgrounds */
-  --color-bg:          #F8FAFC;
-  --color-surface:     #FFFFFF;
+  --color-bg:          #FAF8F5; /* Warm linen paper */
+  --color-surface:     #FCFAF7;
   --color-card:        #FFFFFF;
 
   /* Text */
-  --color-text:        #0F172A;
-  --color-text-muted:  #475569;
+  --color-text:        #18181A; /* Warm rich charcoal */
+  --color-text-muted:  #686662; /* Soft sage grey */
 
-  /* Brand - Modern Professional Cobalt Blue & Indigo Accent */
-  --color-primary:     #2563EB;
-  --color-primary-mid: #1D4ED8;
-  --color-secondary:   #475569;
-  --color-accent:      #6366F1;
+  /* Brand - Curated Terracotta & Sage Forest Green */
+  --color-primary:     #D15132; /* Terracotta orange-red */
+  --color-primary-mid: #AE3F23; /* Deep sienna */
+  --color-secondary:   #686662;
+  --color-accent:      #385A52; /* Muted Sage Forest Green */
 
   /* UI */
-  --color-border:      rgba(226, 232, 240, 0.6);
-  --color-glow:        rgba(37, 99, 235, 0.04);
-  --color-glow-strong: rgba(37, 99, 235, 0.08);
-  --color-primary-rgb: 37, 99, 235;
+  --color-border:      rgba(24, 24, 26, 0.05); /* Delicate warm border */
+  --color-glow:        rgba(209, 81, 50, 0.02);
+  --color-glow-strong: rgba(209, 81, 50, 0.05);
+  --color-primary-rgb: 209, 81, 50;
 
   /* Navigation */
-  --nav-bg:            rgba(248, 250, 252, 0.85);
-  --nav-border:        rgba(226, 232, 240, 0.6);
+  --nav-bg:            rgba(250, 248, 245, 0.85);
+  --nav-border:        rgba(24, 24, 26, 0.05);
 
   /* Cards */
   --card-bg:           #FFFFFF;
   --card-bg-glass:     rgba(255, 255, 255, 0.85);
-  --card-border:       rgba(226, 232, 240, 0.6);
-  --card-shadow:       0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --card-border:       rgba(24, 24, 26, 0.05);
+  --card-shadow:       0 2px 8px rgba(24, 24, 26, 0.02), 0 1px 4px rgba(24, 24, 26, 0.01);
 
   /* Design System Tokens */
-  --brand-primary:      #2563EB;
-  --brand-primary-dark: #1D4ED8;
-  --brand-accent:       #6366F1;
-  --brand-success:      #10B981;
-  --neutral-50:         #F8FAFC;
-  --neutral-100:        #F1F5F9;
-  --neutral-200:        #E2E8F0;
-  --neutral-500:        #64748B;
-  --neutral-900:        #0F172A;
+  --brand-primary:      #D15132;
+  --brand-primary-dark: #AE3F23;
+  --brand-accent:       #385A52;
+  --brand-success:      #2B5950;
+  --neutral-50:         #FAF8F5;
+  --neutral-100:        #FCFAF7;
+  --neutral-200:        #EFECE6;
+  --neutral-500:        #8C8A85;
+  --neutral-900:        #18181A;
 
   --radius-sm:          8px;
   --radius-md:          12px;
   --radius-lg:          16px;
   --radius-full:        9999px;
 
-  --shadow-sm:          0 1px 3px 0 rgba(0,0,0,0.08), 0 1px 2px 0 rgba(0,0,0,0.04);
-  --shadow-md:          0 4px 12px 0 rgba(0,0,0,0.06);
-  --shadow-lg:          0 10px 24px 0 rgba(0,0,0,0.08);
+  --shadow-sm:          0 1px 3px 0 rgba(24,24,26,0.03), 0 1px 2px 0 rgba(24,24,26,0.02);
+  --shadow-md:          0 4px 16px 0 rgba(24,24,26,0.04);
+  --shadow-lg:          0 10px 32px 0 rgba(24,24,26,0.06);
 
   --space-xs:           8px;
   --space-sm:           12px;
@@ -71,15 +71,15 @@
   --space-xl:           32px;
   --space-2xl:          48px;
 
-  /* Blob colors - extremely subtle */
-  --blob-1:   rgba(37, 99, 235, 0.025);
-  --blob-2:   rgba(99, 102, 241, 0.02);
+  /* Blob colors - extremely subtle warm tones */
+  --blob-1:   rgba(209, 81, 50, 0.012);
+  --blob-2:   rgba(56, 90, 82, 0.008);
 
   /* Grid overlay */
-  --grid-color: rgba(0, 0, 0, 0.012);
+  --grid-color: rgba(24, 24, 26, 0.008);
 
   /* Scrollbar */
-  --scrollbar-track: #F8FAFC;
+  --scrollbar-track: #FAF8F5;
 
   --radius: 1.25rem;
 }
@@ -137,40 +137,36 @@
    COMPONENTS
 ───────────────────────────────────────────────────────────── */
 
-/* Glassmorphism Card */
+/* Neo-Brutalist Card */
 .card-elevated {
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  box-shadow: var(--card-shadow);
-  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid var(--neutral-900);
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 0px var(--neutral-900);
+  transition: box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
-.card-elevated:hover {
-  border-color: var(--color-primary);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.08),
-    0 0 0 1px var(--color-border),
-    0 0 20px var(--color-glow);
-  transform: translateY(-6px);
+@media (hover: hover) {
+  .card-elevated:hover {
+    border-color: var(--neutral-900);
+    box-shadow: 8px 8px 0px var(--neutral-900);
+    transform: translate(-4px, -4px);
+  }
 }
 
-/* Gradient text */
+/* Solid brand text */
 .glow-text {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #4F46E5 50%, var(--color-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-primary);
 }
 
 /* Section label line */
 .section-line {
   width: 2.5rem;
-  height: 1px;
-  background: var(--color-text);
+  height: 2px;
+  background: var(--neutral-900);
   display: inline-block;
 }
 
-/* Primary Button */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -178,25 +174,32 @@
   gap: 0.625rem;
   padding: 0 2rem;
   height: 3.25rem;
-  border-radius: 0.875rem;
+  border-radius: var(--radius-md);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 750;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: var(--color-primary);
-  color: var(--color-bg);
-  border: none;
-  box-shadow: 0 4px 16px var(--color-glow);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #FFFFFF;
+  border: 2px solid var(--neutral-900);
+  box-shadow: 4px 4px 0px var(--neutral-900);
+  transition: box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-.btn-primary:hover {
-  background: var(--color-primary-mid);
-  box-shadow: 0 8px 24px var(--color-glow-strong);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: var(--color-primary-mid);
+    box-shadow: 6px 6px 0px var(--neutral-900);
+    transform: translate(-2px, -2px);
+  }
+}
+.btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--neutral-900);
 }
 
-/* Secondary Button */
+/* Neo-Brutalist Secondary Button */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -204,23 +207,29 @@
   gap: 0.625rem;
   padding: 0 2rem;
   height: 3.25rem;
-  border-radius: 0.875rem;
+  border-radius: var(--radius-md);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 750;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: transparent;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid var(--neutral-900);
+  box-shadow: 4px 4px 0px var(--neutral-900);
+  transition: box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1), transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-.btn-secondary:hover {
-  background: var(--color-surface);
-  border-color: var(--color-text);
-  color: var(--color-text);
-  box-shadow: 0 4px 16px var(--color-glow);
-  transform: translateY(-2px);
+@media (hover: hover) {
+  .btn-secondary:hover {
+    background: var(--color-surface);
+    box-shadow: 6px 6px 0px var(--neutral-900);
+    transform: translate(-2px, -2px);
+  }
+}
+.btn-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px var(--neutral-900);
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -232,14 +241,20 @@
   }
   .glass {
     background: var(--card-bg-glass);
-    border: 1px solid var(--card-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid var(--neutral-900);
+    box-shadow: 4px 4px 0px var(--neutral-900);
   }
   .text-theme { color: var(--color-text); }
   .text-muted { color: var(--color-text-muted); }
   .bg-theme   { background-color: var(--color-bg); }
   .bg-surface { background-color: var(--color-surface); }
+  .neo-badge {
+    background: var(--color-surface);
+    border: 2px solid var(--neutral-900);
+    box-shadow: 2px 2px 0px var(--neutral-900);
+    border-radius: var(--radius-full);
+    color: var(--color-text);
+  }
 }
 
 
@@ -362,10 +377,11 @@ html, body {
   .container { padding-left: 1rem; padding-right: 1rem; }
   .card-elevated { border-radius: 1rem; }
 
-  /* Disable expensive 3D transforms on touch/mobile — prevents layout jank */
-  .project-card-inner,
-  .hackathon-card-inner {
+  /* Disable expensive hover transforms entirely on small touch screens */
+  .card-elevated:hover,
+  .card-elevated:focus {
     transform: none !important;
+    box-shadow: 4px 4px 0px var(--neutral-900) !important;
   }
 
   /* Larger touch targets for all interactive elements */
@@ -379,10 +395,36 @@ html, body {
     font-size: 10px;
   }
 
+  /* Skills tabs — horizontally scrollable on mobile */
+  .skills-tabs-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .skills-tabs-scroll::-webkit-scrollbar { display: none; }
+
   /* Hero CTA buttons — full-width stacked on small screens */
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+  }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-blob-drift-1,
+  .animate-blob-drift-2,
+  .animate-blob-drift-3,
+  .animate-pulse,
+  .animate-crt-flicker,
+  .crt-sweep {
+    animation: none !important;
   }
 }
 
@@ -488,8 +530,9 @@ html, body {
   90% { opacity: 1; }
 }
 
+/* CRT flicker — disabled (was 0.08s infinite, too GPU heavy) */
 .animate-crt-flicker {
-  animation: crt-flicker 0.08s infinite;
+  /* animation removed for performance */
 }
 
 /* 4K thermal pulse — layered box-shadows for depth */

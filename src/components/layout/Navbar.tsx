@@ -66,8 +66,8 @@ export const Navbar = () => {
         background: scrolled ? "var(--nav-bg)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid var(--nav-border)" : "none",
-        boxShadow: scrolled ? "0 4px 32px rgba(0,0,0,0.08)" : "none",
+        borderBottom: scrolled ? "2px solid var(--neutral-900)" : "none",
+        boxShadow: "none",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between" style={{ paddingLeft: "max(1rem, env(safe-area-inset-left))", paddingRight: "max(1rem, env(safe-area-inset-right))" }}>
@@ -125,8 +125,8 @@ export const Navbar = () => {
                       layoutId="activeNavPill"
                       className="absolute inset-0 rounded-xl -z-10"
                       style={{
-                        background: "rgba(37, 99, 235, 0.05)",
-                        border: "1px solid rgba(37, 99, 235, 0.12)",
+                        background: "rgba(var(--color-primary-rgb), 0.08)",
+                        border: "2px solid var(--neutral-900)",
                       }}
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
@@ -138,7 +138,7 @@ export const Navbar = () => {
           })}
 
           {/* Icons group */}
-          <div className="ml-4 flex items-center gap-2 pl-4" style={{ borderLeft: "1px solid var(--color-border)" }}>
+          <div className="ml-4 flex items-center gap-2 pl-4" style={{ borderLeft: "2px solid var(--neutral-900)" }}>
 
             {/* GitHub */}
             <a
@@ -146,42 +146,14 @@ export const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-300 block"
-              style={{ color: "var(--color-text-muted)" }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.color = "var(--color-primary)";
-                el.style.background = "var(--color-surface)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.color = "var(--color-text-muted)";
-                el.style.background = "transparent";
-              }}
+              className="w-10 h-10 flex items-center justify-center rounded-xl border-2 border-[var(--neutral-900)] bg-[var(--color-surface)] text-[var(--color-text)] shadow-[3px_3px_0px_#18181A] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#18181A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#18181A] transition-all duration-150 block"
             >
-              <Github className="w-5 h-5" />
+              <Github className="w-5 h-5 mx-auto" />
             </a>
 
             <a
               href="#contact"
-              className="ml-1 px-6 py-2.5 rounded-xl text-[14px] font-bold tracking-wider transition-all duration-300 block"
-              style={{
-                background: "var(--color-primary)",
-                color: "var(--color-bg)",
-                boxShadow: "0 4px 16px var(--color-glow)",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "var(--color-primary-mid)";
-                el.style.boxShadow = "0 6px 28px var(--color-glow-strong)";
-                el.style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLAnchorElement;
-                el.style.background = "var(--color-primary)";
-                el.style.boxShadow = "0 4px 16px var(--color-glow)";
-                el.style.transform = "translateY(0)";
-              }}
+              className="ml-1 px-5 py-2.5 rounded-xl text-[13px] font-bold tracking-wider border-2 border-[var(--neutral-900)] bg-[var(--color-primary)] text-white shadow-[3px_3px_0px_#18181A] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#18181A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#18181A] transition-all duration-150 block"
             >
               Contact Me
             </a>
@@ -195,11 +167,8 @@ export const Navbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
-            className="w-10 h-10 flex items-center justify-center rounded-xl transition-all duration-200"
+            className="w-10 h-10 flex items-center justify-center rounded-xl border-2 border-[var(--neutral-900)] bg-[var(--color-surface)] text-[var(--color-primary)] shadow-[3px_3px_0px_#18181A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#18181A] transition-all duration-150"
             style={{
-              color: "var(--color-primary)",
-              background: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
               minWidth: "44px",
               minHeight: "44px",
             }}
@@ -222,7 +191,7 @@ export const Navbar = () => {
               background: "var(--nav-bg)",
               backdropFilter: "blur(24px)",
               WebkitBackdropFilter: "blur(24px)",
-              borderBottom: "1px solid var(--nav-border)",
+              borderBottom: "2px solid var(--neutral-900)",
             }}
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col gap-3">
@@ -257,28 +226,19 @@ export const Navbar = () => {
                 );
               })}
 
-              <div className="pt-6 mt-2 flex items-center gap-3" style={{ borderTop: "1px solid var(--color-border)" }}>
+              <div className="pt-6 mt-2 flex items-center gap-3" style={{ borderTop: "2px solid var(--neutral-900)" }}>
                 <a
                   href={portfolioData.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-[12px] font-bold tracking-widest transition-all duration-200"
-                  style={{
-                    background: "var(--color-surface)",
-                    border: "1px solid var(--color-border)",
-                    color: "var(--color-primary)",
-                  }}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-[12px] font-bold tracking-widest border-2 border-[var(--neutral-900)] bg-[var(--color-surface)] text-[var(--color-text)] shadow-[3px_3px_0px_#18181A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#18181A] transition-all duration-150"
                 >
-                  <Github className="w-4 h-4" /> GitHub
+                  <Github className="w-4 h-4 animate-none" /> GitHub
                 </a>
                 <a
                   href="#contact"
                   onClick={() => setIsOpen(false)}
-                  className="flex-1 flex items-center justify-center py-3 rounded-xl text-[12px] font-bold tracking-widest"
-                  style={{
-                    background: "var(--color-primary)",
-                    color: "var(--color-bg)",
-                  }}
+                  className="flex-1 flex items-center justify-center py-3 rounded-xl text-[12px] font-bold tracking-widest border-2 border-[var(--neutral-900)] bg-[var(--color-primary)] text-white shadow-[3px_3px_0px_#18181A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_#18181A] transition-all duration-150"
                 >
                   Contact Me
                 </a>
