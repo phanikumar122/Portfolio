@@ -1,9 +1,8 @@
 "use client";
 
 import { portfolioData } from "@/data/portfolio";
-import { ProjectCard } from "@/components/ui/ProjectCard";
-import { MaskText } from "@/components/ui/MaskText";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Github, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Projects = () => {
   const projects = portfolioData.projects;
@@ -11,36 +10,90 @@ export const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-12 sm:py-16 md:py-20 relative overflow-hidden"
+      className="py-20 md:py-28 bg-bg relative"
     >
-      {/* Background Blobs */}
-      <div className="absolute top-1/4 right-0 pointer-events-none" style={{ width: "clamp(150px,30vw,400px)", height: "clamp(150px,30vw,400px)", background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)", filter: "blur(70px)" }} />
-      <div className="absolute bottom-1/4 left-0 pointer-events-none" style={{ width: "clamp(120px,25vw,350px)", height: "clamp(120px,25vw,350px)", background: "radial-gradient(ellipse, var(--blob-2) 0%, transparent 65%)", filter: "blur(60px)" }} />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-
+          
           {/* Header */}
-          <ScrollReveal className="flex flex-col gap-4 mb-10 sm:mb-14">
-            <div className="flex items-center gap-4">
-              <span className="section-line" />
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em]" style={{ color: "var(--color-primary)" }}>PORTFOLIO</p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 mb-12 gap-4">
+            <div>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent block mb-2">Portfolio</span>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-text">
+                Featured Projects.
+              </h2>
             </div>
-            <h2
-              className="font-bold tracking-tighter"
-              style={{ color: "var(--color-text)", fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
-            >
-              <MaskText>Curated Projects.</MaskText>
-            </h2>
-          </ScrollReveal>
+            <p className="max-w-xs text-sm text-text-muted leading-relaxed">
+              A curated directory of software systems spanning Move smart contracts, Flutter modules, NLP AI workflows, and Express backends.
+            </p>
+          </div>
 
-          {/* 3-Column Grid of All Projects */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-            {projects.map((project, idx) => (
-              <div key={project.id} className="col-span-1 flex">
-                <ProjectCard project={project} idx={idx} layoutSize="major" />
-              </div>
-            ))}
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, idx) => {
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="glass-primary glass-primary-hover p-6 flex flex-col justify-between h-full group relative overflow-hidden"
+                >
+                  {/* Glowing background gradient on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                  <div>
+                    {/* Top row: tech tags */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {project.tech.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-mono text-[9px] tracking-wider uppercase bg-white/5 border border-white/10 text-text-muted px-2 py-0.5 rounded-full"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="font-display font-bold text-text text-lg sm:text-xl mb-2 group-hover:text-accent transition-colors">
+                      {project.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="font-sans text-xs sm:text-sm text-text-muted leading-relaxed mb-6">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Actions (source code / live demo links) */}
+                  <div className="flex items-center gap-3 pt-4 border-t border-white/10 mt-auto relative z-10">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-secondary !h-8 !px-3 !text-[11px] flex-1"
+                      >
+                        <Github className="w-3.5 h-3.5" /> Source
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary !h-8 !px-3 !text-[11px] flex-1"
+                      >
+                        Demo <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
+
+                </motion.div>
+              );
+            })}
           </div>
 
         </div>

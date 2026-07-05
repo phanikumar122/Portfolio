@@ -8,7 +8,7 @@ export const LoadingScreen = () => {
 
   useEffect(() => {
     const isComplete = document.readyState === "complete";
-    const t = setTimeout(() => setLoading(false), isComplete ? 400 : 2200);
+    const t = setTimeout(() => setLoading(false), isComplete ? 300 : 1500);
     const onLoad = () => setLoading(false);
     if (!isComplete) window.addEventListener("load", onLoad);
     return () => {
@@ -23,76 +23,49 @@ export const LoadingScreen = () => {
         <motion.div
           key="loading-overlay"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
-          style={{ background: "var(--color-bg)", pointerEvents: "all" }}
+          exit={{ opacity: 0, transition: { duration: 0.4, ease: "easeInOut" } }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-bg"
+          style={{ pointerEvents: "all" }}
         >
-          {/* Background orbs */}
-          <div
-            className="absolute animate-glow-pulse rounded-full pointer-events-none"
-            style={{
-              width: "clamp(200px, 40vw, 400px)",
-              height: "clamp(200px, 40vw, 400px)",
-              top: "20%", left: "20%",
-              background: "radial-gradient(circle, var(--blob-1) 0%, transparent 70%)",
-              filter: "blur(50px)",
-            }}
-          />
-          <div
-            className="absolute animate-glow-pulse rounded-full pointer-events-none"
-            style={{
-              width: "clamp(150px, 30vw, 300px)",
-              height: "clamp(150px, 30vw, 300px)",
-              bottom: "20%", right: "20%",
-              background: "radial-gradient(circle, var(--blob-2) 0%, transparent 70%)",
-              filter: "blur(40px)",
-              animationDelay: "1s",
-            }}
-          />
-
-          <div className="relative flex flex-col items-center gap-8 z-10 px-4">
-            {/* Name */}
+          <div className="relative flex flex-col items-center gap-6 z-10 px-4">
+            
+            {/* Header / Brand */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="flex items-baseline gap-1"
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="flex items-baseline gap-1 font-display font-bold text-xl sm:text-2xl"
             >
-              <span className="text-2xl sm:text-3xl font-bold tracking-tight" style={{ color: "var(--color-text)" }}>
+              <span className="text-text">
                 Phani
               </span>
-              <span className="text-2xl sm:text-3xl font-bold tracking-tight italic glow-text">
+              <span className="glow-text italic">
                 Kumar.
               </span>
             </motion.div>
 
-            {/* Progress bar */}
+            {/* Progress line */}
             <div
-              className="relative w-36 h-px overflow-hidden rounded-full"
-              style={{ background: "var(--color-border)" }}
+              className="relative w-48 h-[2px] overflow-hidden bg-white/10 rounded-full"
             >
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
-                transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-                className="absolute inset-0 w-1/2 rounded-full"
-                style={{
-                  background: "linear-gradient(90deg, transparent, var(--color-primary), transparent)",
-                  boxShadow: "0 0 10px var(--color-glow)",
-                }}
+                transition={{ repeat: Infinity, duration: 1.1, ease: "easeInOut" }}
+                className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-primary to-accent"
               />
             </div>
 
-            {/* Subtitle */}
+            {/* Telemetry subtitle */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
-              transition={{ delay: 0.5, duration: 0.7 }}
-              className="text-[10px] font-bold uppercase tracking-[0.3em]"
-              style={{ color: "var(--color-text-muted)" }}
+              transition={{ delay: 0.2, duration: 0.4 }}
+              className="text-[10px] font-mono tracking-widest uppercase text-text-muted"
             >
-              Booting Interface
+              Initializing Interface
             </motion.p>
+
           </div>
         </motion.div>
       )}

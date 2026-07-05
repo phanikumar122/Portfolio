@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
@@ -36,12 +36,12 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
         if (href && href.startsWith("#")) {
           e.preventDefault();
           if (href === "#" || href === "#home") {
-            lenis.scrollTo(0);
+            lenis.scrollTo(0, { duration: 1.5 });
           } else {
             const targetEl = document.querySelector(href);
             if (targetEl) {
               // Offset -80px to account for the fixed header height
-              lenis.scrollTo(targetEl as HTMLElement, { offset: -80 });
+              lenis.scrollTo(targetEl as HTMLElement, { offset: -80, duration: 1.5 });
             }
           }
         }

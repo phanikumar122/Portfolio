@@ -1,148 +1,75 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { ExternalLink, Award, Shield, Code2 } from "lucide-react";
-import { MaskText } from "@/components/ui/MaskText";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-
-const issuerMeta: Record<string, { color: string; bg: string; border: string; icon: React.ReactNode }> = {
-  Cisco: {
-    color: "text-[var(--color-accent)]",
-    bg: "bg-[rgba(56,90,82,0.04)]",
-    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
-    icon: <Shield className="w-4 h-4" />,
-  },
-  "Red Hat": {
-    color: "text-[var(--color-primary)]",
-    bg: "bg-[rgba(var(--color-primary-rgb),0.04)]",
-    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
-    icon: <Code2 className="w-4 h-4" />,
-  },
-  Udemy: {
-    color: "text-neutral-600",
-    bg: "bg-[rgba(140,138,133,0.04)]",
-    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
-    icon: <Award className="w-4 h-4" />,
-  },
-  AWS: {
-    color: "text-[var(--color-primary)]",
-    bg: "bg-[rgba(var(--color-primary-rgb),0.04)]",
-    border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
-    icon: <Award className="w-4 h-4" />,
-  },
-};
-
-const defaultMeta = {
-  color: "text-indigo-600",
-  bg: "bg-indigo-50",
-  border: "border-2 border-[var(--neutral-900)] shadow-[1px_1px_0px_#18181A]",
-  icon: <Award className="w-4 h-4" />,
-};
+import { ExternalLink, Award } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Certificates = () => {
   return (
     <section
       id="certificates"
-      className="py-10 sm:py-16 md:py-20 relative overflow-hidden"
+      className="py-20 md:py-28 bg-bg relative"
     >
-      {/* Background Blobs */}
-      <div
-        className="absolute top-0 right-1/4 pointer-events-none"
-        style={{
-          width: "clamp(150px,28vw,380px)",
-          height: "clamp(150px,28vw,380px)",
-          background: "radial-gradient(ellipse, var(--blob-1) 0%, transparent 65%)",
-          filter: "blur(60px)",
-        }}
-      />
-      <div
-        className="absolute bottom-0 left-1/4 pointer-events-none"
-        style={{
-          width: "clamp(120px,22vw,320px)",
-          height: "clamp(120px,22vw,320px)",
-          background: "radial-gradient(ellipse, var(--blob-2) 0%, transparent 65%)",
-          filter: "blur(50px)",
-        }}
-      />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
 
-          {/* Header */}
-          <ScrollReveal className="mb-12 sm:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 mb-12 gap-4">
             <div>
-              <div className="flex items-center gap-4 mb-4">
-                <span className="section-line" />
-                <p
-                  className="text-[11px] font-bold uppercase tracking-[0.3em]"
-                  style={{ color: "var(--color-primary)" }}
-                >
-                  ACCOLADES
-                </p>
-              </div>
-              <h2
-                className="font-bold tracking-tighter"
-                style={{ color: "var(--color-text)", fontSize: "clamp(2rem, 7vw, 5.5rem)" }}
-              >
-                <MaskText>Recognition. Verified.</MaskText>
+              <span className="font-mono text-xs uppercase tracking-widest text-accent block mb-2">Credentials</span>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-text">
+                Certifications.
               </h2>
             </div>
-            <p
-              className="max-w-xs text-sm sm:text-base font-medium leading-relaxed"
-              style={{ color: "var(--color-text-muted)" }}
-            >
-              Certified across networking, security, and development. Click any card to view the official credential.
+            <p className="max-w-xs text-sm text-text-muted leading-relaxed">
+              Academic credentials and industry checkpoints verifying competencies across cloud architecture, security administration, and python development.
             </p>
-          </ScrollReveal>
+          </div>
 
-          {/* Certificate Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Grid Layout (Compact Glass Cards) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {portfolioData.certificates.map((cert, idx) => {
-              const meta = issuerMeta[cert.issuer] ?? defaultMeta;
               return (
                 <motion.a
                   key={cert.id}
                   href={cert.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  className="card-elevated group relative flex flex-col justify-between p-5 sm:p-6 cursor-pointer"
+                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  className="group glass-secondary glass-secondary-hover p-5 flex flex-col justify-between h-full cursor-pointer"
                 >
-                  {/* Top accent line */}
-                  <div className="flex justify-end items-center text-[8px] font-mono text-neutral-400 font-extrabold uppercase tracking-widest mb-4 border-b border-neutral-200 pb-2">
-                    <span>{cert.date}</span>
-                  </div>
-
-                  {/* Issuer icon + title */}
-                  <div className="flex items-start gap-3 mb-4">
-                    <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${meta.bg} ${meta.border} ${meta.color}`}
-                    >
-                      {meta.icon}
-                    </div>
-                    <div className="leading-tight">
-                      <h3 className="text-sm font-bold text-neutral-900 leading-snug">
-                        {cert.title}
-                      </h3>
-                      <span className={`text-[10px] font-mono font-bold block mt-0.5 ${meta.color}`}>
-                        {cert.issuer}
+                  <div>
+                    {/* Header: Issuer Logo / Icon & Date */}
+                    <div className="flex justify-between items-center border-b border-white/10 pb-3 mb-4">
+                      <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-accent group-hover:text-primary transition-colors">
+                        <Award className="w-4 h-4" />
+                      </div>
+                      <span className="font-mono text-[10px] text-text-muted">
+                        {cert.date}
                       </span>
                     </div>
+
+                    {/* Content */}
+                    <h3 className="font-display font-semibold text-text text-base group-hover:text-accent transition-colors leading-snug mb-1">
+                      {cert.title}
+                    </h3>
+                    
+                    {/* Issuer label */}
+                    <span className="font-sans text-xs text-text-muted uppercase tracking-wider block font-medium">
+                      {cert.issuer}
+                    </span>
                   </div>
 
-                  {/* Footer action */}
-                  <div className="flex items-center justify-between pt-3 border-t border-neutral-200 mt-auto">
-                    <span className="text-[9px] font-mono font-extrabold uppercase tracking-wider text-neutral-400">
-                      Verified · {cert.date}
+                  {/* Footer */}
+                  <div className="flex items-center justify-between border-t border-white/10 mt-6 pt-3">
+                    <span className="font-mono text-[9px] text-text-muted uppercase">
+                      ID: CERT_0{cert.id}
                     </span>
-                    <span
-                      className={`flex items-center gap-1 text-[9px] font-mono font-black uppercase tracking-wider ${meta.color} opacity-0 group-hover:opacity-100 transition-opacity duration-200`}
-                    >
-                      View <ExternalLink className="w-3 h-3" />
+                    <span className="flex items-center gap-1 font-mono text-[10px] text-text-muted group-hover:text-accent transition-colors uppercase font-medium">
+                      verify <ExternalLink className="w-3 h-3" />
                     </span>
                   </div>
                 </motion.a>

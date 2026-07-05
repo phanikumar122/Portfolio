@@ -97,9 +97,9 @@ export const About = () => {
                     transition={{ duration: 0.6, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                     className="card-elevated w-full relative overflow-hidden flex flex-col cursor-default"
                   >
-                    <div className="p-6 flex-1 flex flex-col bg-white">
+                    <div className="p-6 flex-1 flex flex-col bg-transparent">
                       <div className="flex items-center gap-3.5 mb-3">
-                        <div className="w-8 h-8 rounded-xl bg-white border-2 border-[var(--neutral-900)] flex items-center justify-center shadow-[2px_2px_0px_#18181A] shrink-0">
+                        <div className="w-8 h-8 rounded-xl bg-[var(--card-bg)] border border-[var(--color-border)] flex items-center justify-center shadow-sm shrink-0">
                           {pillar.icon}
                         </div>
                         <h3 className="text-sm sm:text-base font-bold text-[var(--color-text)] uppercase tracking-wider">
