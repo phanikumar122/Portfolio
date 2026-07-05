@@ -29,7 +29,7 @@ export const portfolioData = {
     },
     {
       category: "Architectural Patterns",
-      items: ["Microservices", "3-Tier Architecture", "Real-time Systems"],
+      items: ["Microservices", "System Design", "Real-time Systems"],
     },
     {
       category: "System Operations",

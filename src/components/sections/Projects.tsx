@@ -86,7 +86,7 @@ export const Projects = () => {
                         rel="noopener noreferrer"
                         className="btn-primary !h-8 !px-3 !text-[11px] flex-1"
                       >
-                        Demo <ExternalLink className="w-3.5 h-3.5" />
+                        Live <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     )}
                   </div>

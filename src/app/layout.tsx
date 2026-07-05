@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Outfit, JetBrains_Mono, Inter } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
@@ -10,12 +10,6 @@ const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-  display: "swap",
 });
 
 const inter = Inter({
@@ -47,7 +41,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className="dark">
       <body
         suppressHydrationWarning
-        className={`${outfit.variable} ${jetbrainsMono.variable} ${inter.variable} font-sans antialiased bg-bg text-text`}
+        className={`${outfit.variable} ${inter.variable} font-sans antialiased bg-bg text-text`}
       >
         <ThemeProvider
           attribute="class"

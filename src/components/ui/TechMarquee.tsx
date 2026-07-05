@@ -19,7 +19,7 @@ export const TechMarquee = () => {
     "JWT",
     "Security",
     "Real-time Systems",
-    "3-Tier Architecture",
+    "System Design",
     "IaC"
   ];
 

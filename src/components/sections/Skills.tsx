@@ -11,7 +11,7 @@ interface SkillCategory {
 const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "Languages",
-    skills: ["Core JS", "Python", "Dart", "C", "JSON"],
+    skills: ["Core JS", "Python", "C++", "Java", "JSON"],
   },
   {
     title: "Frontend & Mobile",
@@ -27,11 +27,11 @@ const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     title: "System Architecture",
-    skills: ["Microservices", "3-Tier Architecture", "Real-time Systems", "Security", "JSON Web Token (JWT)", "API Testing"],
+    skills: ["Microservices", "System Design (Scalability, Caching)", "Event-Driven Architecture", "Real-time Systems", "Security", "API Testing"],
   },
   {
     title: "Emerging Tech",
-    skills: ["AI & ML (RoBERTa, NLP)", "Blockchain (Aptos, Move)", "IoT (Sensors, Bluetooth telemetry)"],
+    skills: ["LLM Agents & ReAct Framework", "Multi-Agent Orchestration", "Agentic RAG & Vector DBs", "Tool Use & Function Calling", "Autonomous Reasoning Loops"],
   },
 ];
 

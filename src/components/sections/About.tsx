@@ -19,9 +19,9 @@ export const About = () => {
       description: "Designing reliable architectures, distributed microservices, and secure APIs using Node.js, Express, and databases (MongoDB, MySQL, Firebase). Grounded in robust protocols including JWT authentication and secure session states.",
     },
     {
-      title: "Emerging Tech Passion",
+      title: "Agentic AI Focus",
       icon: <Cpu className="w-5 h-5 text-neutral-500" />,
-      description: "Integrating cutting-edge systems including NLP machine learning pipelines (RoBERTa), blockchain smart contracts (Move on Aptos), and embedded hardware/IoT devices with real-time Bluetooth telemetry.",
+      description: "Designing autonomous LLM agents, deploying multi-agent orchestration frameworks, and integrating tool-use, function calling, and self-correcting reasoning loops.",
     },
   ];
 

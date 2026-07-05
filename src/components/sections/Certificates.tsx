@@ -64,10 +64,7 @@ export const Certificates = () => {
                   </div>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between border-t border-white/10 mt-6 pt-3">
-                    <span className="font-mono text-[9px] text-text-muted uppercase">
-                      ID: CERT_0{cert.id}
-                    </span>
+                  <div className="flex items-center justify-end border-t border-white/10 mt-6 pt-3">
                     <span className="flex items-center gap-1 font-mono text-[10px] text-text-muted group-hover:text-accent transition-colors uppercase font-medium">
                       verify <ExternalLink className="w-3 h-3" />
                     </span>

@@ -5,7 +5,7 @@
 @theme {
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -22,10 +22,12 @@
   --border: rgba(255, 255, 255, 0.05);
   --text: #FAFAFA;
   --text-muted: #A1A1AA;
-  --primary: #10B981;
-  --primary-rgb: 16, 185, 129;
-  --accent: #34D399;
-  --accent-rgb: 52, 211, 153;
+  --primary: #6366F1;
+  --primary-rgb: 99, 102, 241;
+  --accent: #A855F7;
+  --accent-rgb: 168, 85, 247;
+  --blob-1: rgba(99, 102, 241, 0.15);
+  --blob-2: rgba(168, 85, 247, 0.12);
 }
 
 @layer base {
@@ -52,7 +54,7 @@
   }
 
   ::selection {
-    background-color: rgba(16, 185, 129, 0.15);
+    background-color: rgba(99, 102, 241, 0.15);
     color: var(--text);
   }
 
@@ -78,8 +80,8 @@
 }
 .glass-hover:hover {
   background: rgba(24, 24, 28, 0.7);
-  border-color: rgba(16, 185, 129, 0.25);
-  box-shadow: 0 12px 40px 0 rgba(16, 185, 129, 0.08);
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.08);
   transform: translateY(-2px);
 }
 
@@ -95,8 +97,8 @@
 }
 .glass-primary-hover:hover {
   background: rgba(24, 24, 28, 0.75);
-  border-color: rgba(16, 185, 129, 0.3);
-  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(16, 185, 129, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.5), 0 0 20px 0 rgba(99, 102, 241, 0.08);
   transform: translateY(-3px);
 }
 
@@ -111,8 +113,8 @@
 }
 .glass-secondary-hover:hover {
   background: rgba(24, 24, 28, 0.6);
-  border-color: rgba(16, 185, 129, 0.2);
-  box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.4), 0 0 15px 0 rgba(16, 185, 129, 0.06);
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.4), 0 0 15px 0 rgba(99, 102, 241, 0.06);
   transform: translateY(-2px);
 }
 
@@ -139,12 +141,12 @@
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 .btn-primary:hover {
-  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.35);
   transform: translateY(-1px);
 }
 .btn-primary:active {
