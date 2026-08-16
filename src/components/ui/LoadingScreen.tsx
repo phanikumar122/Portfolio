@@ -22,8 +22,11 @@ export const LoadingScreen = () => {
       {loading && (
         <motion.div
           key="loading-overlay"
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.4, ease: "easeInOut" } }}
+          initial={{ y: "0%" }}
+          exit={{ 
+            y: "-100%", 
+            transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1] } 
+          }}
           className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-bg"
           style={{ pointerEvents: "all" }}
         >

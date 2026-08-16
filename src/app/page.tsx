@@ -1,5 +1,5 @@
 import { LoadingScreen } from "@/components/ui/LoadingScreen";
-import { AnimatedBackground } from "@/components/ui/AnimatedBackground";
+import { ParticleField } from "@/components/three/ParticleField";
 import { Navbar } from "@/components/layout/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { Skills } from "@/components/sections/Skills";
@@ -11,17 +11,20 @@ import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-bg">
       <LoadingScreen />
-      <AnimatedBackground />
-      <Navbar />
-      <Hero />
-      <Skills />
-      <Projects />
-      <Hackathons />
-      <Certificates />
-      <Contact />
-      <Footer />
+      <ParticleField />
+      
+      <div className="relative z-10">
+        <Navbar />
+        <Hero />
+        <Skills />
+        <Projects />
+        <Hackathons />
+        <Certificates />
+        <Contact />
+        <Footer />
+      </div>
     </main>
   );
 }

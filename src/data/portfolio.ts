@@ -82,6 +82,20 @@ export const portfolioData = {
       tech: ["Flutter", "IoT", "Bluetooth", "Sensors", "OLED"],
       github: "https://github.com/phanikumar122/Smart-Hand-Rehabilitation",
     },
+    {
+      id: 8,
+      title: "Rental Car",
+      description: "This is a complete website for a car rental business, featuring a beautiful modern design, easy booking for customers, and a powerful dashboard for the owner (Admin).",
+      tech: ["Web", "UI/UX", "Dashboard"],
+      github: "https://github.com/phanikumar122/rental_car",
+    },
+    {
+      id: 9,
+      title: "Mentora",
+      description: "Mentora is a web-based educational communication platform that acts as a bridge between students and teachers. It centralizes academic communication, assignment management, announcements, attendance, progress tracking, and collaboration into one secure platform.",
+      tech: ["EdTech", "Web Platform", "Management"],
+      github: "https://github.com/phanikumar122/Mentora",
+    },
   ],
   certificates: [
     {
@@ -141,7 +155,7 @@ export const portfolioData = {
       subtitle: "6-Day Bootcamp & Challenge",
       description: "An intensive 6-day bootcamp and algorithmic competition focused on data structures and algorithm design. Designed optimized computational models in C to solve strict computational problems and handle complex boundary test conditions.",
       date: "2024",
-      link: "https://drive.google.com/file/d/18Mo8LW0miW9aNm6rKbXGxXoLFE0YrzlW/view?usp=drivesdk"
+      certificate: "https://drive.google.com/file/d/18Mo8LW0miW9aNm6rKbXGxXoLFE0YrzlW/view?usp=drivesdk"
     },
     {
       id: 2,
@@ -150,7 +164,7 @@ export const portfolioData = {
       description: "Developed an IoT-enabled smart hand rehabilitation glove using hardware sensors and a cross-platform Flutter application to assist stroke patients in motor recovery tracking.",
       date: "2025",
       github: "https://github.com/phanikumar122/Smart-Hand-Rehabilitation",
-      link: "https://drive.google.com/file/d/11GWgN88HpsoxLR3l5zyAyG6Zx5uzyTjR/view?usp=drivesdk"
+      certificate: "https://drive.google.com/file/d/11GWgN88HpsoxLR3l5zyAyG6Zx5uzyTjR/view?usp=drivesdk"
     },
     {
       id: 3,
@@ -159,7 +173,7 @@ export const portfolioData = {
       description: "Built TruthLens AI, a real-time misinformation detection platform that integrates NewsAPI and leverages hybrid Natural Language Processing (NLP) models to evaluate news authenticity.",
       date: "2025",
       github: "https://github.com/phanikumar122/truthlens-ai",
-      link: "https://drive.google.com/file/d/1956_2iXQ4xhtwA1U95wOkCiVh_8c3Huz/view?usp=drivesdk"
+      certificate: "https://drive.google.com/file/d/1956_2iXQ4xhtwA1U95wOkCiVh_8c3Huz/view?usp=drivesdk"
     },
     {
       id: 4,
@@ -168,6 +182,15 @@ export const portfolioData = {
       description: "Developed a decentralized oracle network using Move language in the Aptos ecosystem during a 24-hour blockchain hackathon.",
       date: "2024",
       github: "https://github.com/phanikumar122/Decentralized-Oracle-Network"
+    },
+    {
+      id: 5,
+      title: "ABTalks Hackathon",
+      subtitle: "60-Day Coding Challenge Platform",
+      description: "ABTalks is a mobile-first 60-day coding challenge platform designed for college students to build consistently, ship real projects, and create visible proof of their progress. The redesigned experience uses a bold Neo-Brutalist UI to make daily challenges, coding streaks, achievements, and GitHub/LinkedIn submissions feel clear, tactile.",
+      date: "2025",
+      github: "https://github.com/phanikumar122/ABTalks_Hackathon",
+      live: "https://ab-talks-hackathon-five.vercel.app/"
     }
   ]
 };

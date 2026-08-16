@@ -1,8 +1,9 @@
 "use client";
 
 import { portfolioData } from "@/data/portfolio";
-import { Github, Award, Trophy } from "lucide-react";
+import { Github, ExternalLink, Trophy, Award } from "lucide-react";
 import { motion } from "framer-motion";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 type Hackathon = {
   id: number;
@@ -11,7 +12,8 @@ type Hackathon = {
   description: string;
   date: string;
   github?: string;
-  link?: string;
+  certificate?: string;
+  live?: string;
 };
 
 export const Hackathons = () => {
@@ -28,26 +30,23 @@ export const Hackathons = () => {
   return (
     <section
       id="hackathons"
-      className="py-20 md:py-28 bg-bg relative"
+      className="py-24 md:py-32 relative"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
 
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 mb-12 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 gap-6 border-b border-white/10">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-accent block mb-2">Achievements</span>
-              <h2 className="font-display font-bold text-3xl sm:text-4xl text-text">
+              <span className="font-mono text-xs uppercase tracking-widest text-text-muted block mb-3">Achievements</span>
+              <h2 className="font-display font-bold text-4xl sm:text-5xl text-text tracking-tight">
                 Hackathons & Awards.
               </h2>
             </div>
-            <p className="max-w-xs text-sm text-text-muted leading-relaxed">
-              Algorithmic build sessions, Move blockchain events, and embedded IoT prototype challenges.
-            </p>
           </div>
 
-          {/* Grid Layout (Modern glass cards) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-[minmax(250px,auto)]">
             {hackList.map((hack, idx) => {
               const tags = getTechTags(hack.id);
               return (
@@ -57,71 +56,84 @@ export const Hackathons = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="glass-primary glass-primary-hover p-6 flex flex-col justify-between h-full relative overflow-hidden"
+                  className="h-full"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  <TiltCard className="h-full">
+                    <div className="bento-card p-8 flex flex-col justify-between group h-full">
+                      <div className="bento-glow" />
 
-                  <div className="relative z-10">
-                    {/* Header: Date, Subtitle */}
-                    <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-                      <div className="flex items-center gap-2">
-                        <Trophy className="w-4 h-4 text-accent" />
-                        <span className="font-mono text-[10px] tracking-wider uppercase text-text-muted font-medium">
-                          {hack.subtitle}
-                        </span>
+                      <div className="relative z-10">
+                        {/* Header: Date, Subtitle */}
+                        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5">
+                          <div className="flex items-center gap-3">
+                            <Trophy className="w-4 h-4 text-white" />
+                            <span className="font-mono text-[10px] tracking-wider uppercase text-text-muted font-semibold">
+                              {hack.subtitle}
+                            </span>
+                          </div>
+                          <span className="font-mono text-xs text-text-muted font-bold">
+                            {hack.date}
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <h3 className="font-display font-semibold text-text text-2xl mb-3 tracking-tight group-hover:text-white transition-colors">
+                          {hack.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="font-sans text-sm sm:text-base text-text-muted leading-relaxed mb-6 font-light">
+                          {hack.description}
+                        </p>
+
+                        {/* Tech Chips */}
+                        <div className="flex flex-wrap gap-2 mb-8">
+                          {tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="font-mono text-[10px] tracking-wider uppercase bg-surface border border-white/10 text-text-muted px-2.5 py-1 rounded-md"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <span className="font-mono text-xs text-text-muted font-bold">
-                        {hack.date}
-                      </span>
+
+                      {/* Actions */}
+                      <div className="flex items-center gap-4 mt-auto relative z-10">
+                        {hack.github && (
+                          <a
+                            href={hack.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-text-muted hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+                          >
+                            <Github className="w-4 h-4" /> Code
+                          </a>
+                        )}
+                        {hack.certificate && (
+                          <a
+                            href={hack.certificate}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-text-muted hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+                          >
+                            <Award className="w-4 h-4" /> Certificate
+                          </a>
+                        )}
+                        {hack.live && (
+                          <a
+                            href={hack.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-text-muted hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+                          >
+                            <ExternalLink className="w-4 h-4" /> Live
+                          </a>
+                        )}
+                      </div>
                     </div>
-
-                    {/* Title */}
-                    <h3 className="font-display font-bold text-text text-lg mb-2">
-                      {hack.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="font-sans text-xs sm:text-sm text-text-muted leading-relaxed mb-6">
-                      {hack.description}
-                    </p>
-
-                    {/* Tech Chips */}
-                    <div className="flex flex-wrap gap-1.5 mb-6">
-                      {tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="font-mono text-[9px] tracking-wider uppercase bg-white/5 border border-white/10 text-text-muted px-2.5 py-0.5 rounded-full"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-white/10 relative z-10">
-                    {hack.github && (
-                      <a
-                        href={hack.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-secondary !h-8 !px-3 !text-[11px] flex-1"
-                      >
-                        <Github className="w-3.5 h-3.5" /> Code
-                      </a>
-                    )}
-                    {hack.link && (
-                      <a
-                        href={hack.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-primary !h-8 !px-3 !text-[11px] flex-1"
-                      >
-                        Certificate <Award className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                  </div>
-
+                  </TiltCard>
                 </motion.div>
               );
             })}
