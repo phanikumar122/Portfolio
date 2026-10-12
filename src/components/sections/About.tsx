@@ -82,12 +82,6 @@ export const About = () => {
             {/* Symmetrical Pillars */}
             <div className="lg:col-span-6 flex flex-col gap-4">
               {pillars.map((pillar, idx) => {
-                const sectionName = pillar.title.toLowerCase().includes("frontend")
-                  ? "FRONTEND FOCUS"
-                  : pillar.title.toLowerCase().includes("backend")
-                  ? "BACKEND EXPERTISE"
-                  : "EMERGING TECH";
-
                 return (
                   <motion.div
                     key={pillar.title}

@@ -38,19 +38,20 @@ export const portfolioData = {
   ],
   projects: [
     {
-      id: 2,
-      title: "Skill Tern",
-      description: "A full-stack web application that connects students and companies for internships using a rule-based matching system. Built with Node.js, Express, MongoDB, and vanilla JavaScript.",
-      tech: ["Front-end", "JWT",         "bcrypt", "Node.js", "MongoDB"],
-      github: "https://github.com/phanikumar122/SkillTern",
-      demo: "https://skilltern-portal.vercel.app/",
+      id: 1,
+      title: "Public Transport Demand",
+      description: "A machine learning demand forecasting web platform analyzing urban transit patterns to predict commuter volume and optimize fleet scheduling.",
+      tech: ["Machine Learning", "Python", "Data Science", "Web App"],
+      github: "https://github.com/phanikumar122/Public-Transport-Demand-Prediction",
+      demo: "https://public-transport-demand-prediction-nine.vercel.app",
     },
     {
-      id: 3,
-      title: "ToDo App",
-      description: "A full-stack productivity app built with Flutter on the frontend and Node.js on the backend, using Firebase Authentication and MongoDB Atlas for persistence.",
-      tech: ["Flutter", "Node.js", "Firebase", "MongoDB"],
-      github: "https://github.com/phanikumar122/MyToDo",
+      id: 2,
+      title: "SkillTern",
+      description: "An end-to-end platform connecting emerging engineering talent with curated internship opportunities, skill verification, and mentorship pathways.",
+      tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
+      github: "https://github.com/phanikumar122/SkillTern",
+      demo: "https://skill-tern.vercel.app",
     },
     {
       id: 4,
@@ -61,33 +62,11 @@ export const portfolioData = {
       demo: "https://syllabus-ai-c35aa.web.app/",
     },
     {
-      id: 5,
-      title: "TruthLens",
-      description: "An AI-powered real-time misinformation detection system featuring a premium skeuomorphic dashboard and hybrid RoBERTa pipeline.",
-      tech: ["AI&ML", "NLP", "RoBERTa"],
-      github: "https://github.com/phanikumar122/truthlens-ai",
-      demo: "https://truthlens-ai-amber.vercel.app/",
-    },
-    {
-      id: 6,
-      title: "Decentralized Network",
-      description: "A decentralized oracle network on Aptos enabling independent providers to stake tokens and supply reliable external data to smart contracts.",
-      tech: ["Blockchain", "Aptos"],
-      github: "https://github.com/phanikumar122/Decentralized-Oracle-Network",
-    },
-    {
       id: 7,
       title: "Smart Hand Rehab",
       description: "An embedded rehabilitation system using flex sensors, vibration feedback, OLED monitoring, and Bluetooth communication to assist stroke patients in motor recovery tracking.",
       tech: ["Flutter", "IoT", "Bluetooth", "Sensors", "OLED"],
       github: "https://github.com/phanikumar122/Smart-Hand-Rehabilitation",
-    },
-    {
-      id: 8,
-      title: "Rental Car",
-      description: "This is a complete website for a car rental business, featuring a beautiful modern design, easy booking for customers, and a powerful dashboard for the owner (Admin).",
-      tech: ["Web", "UI/UX", "Dashboard"],
-      github: "https://github.com/phanikumar122/rental_car",
     },
     {
       id: 9,
@@ -165,32 +144,6 @@ export const portfolioData = {
       date: "2025",
       github: "https://github.com/phanikumar122/Smart-Hand-Rehabilitation",
       certificate: "https://drive.google.com/file/d/11GWgN88HpsoxLR3l5zyAyG6Zx5uzyTjR/view?usp=drivesdk"
-    },
-    {
-      id: 3,
-      title: "SRM 36-Hour Hackathon",
-      subtitle: "TruthLens AI",
-      description: "Built TruthLens AI, a real-time misinformation detection platform that integrates NewsAPI and leverages hybrid Natural Language Processing (NLP) models to evaluate news authenticity.",
-      date: "2025",
-      github: "https://github.com/phanikumar122/truthlens-ai",
-      certificate: "https://drive.google.com/file/d/1956_2iXQ4xhtwA1U95wOkCiVh_8c3Huz/view?usp=drivesdk"
-    },
-    {
-      id: 4,
-      title: "Aptos Ecosystem Hackathon",
-      subtitle: "Decentralized Oracle Network",
-      description: "Developed a decentralized oracle network using Move language in the Aptos ecosystem during a 24-hour blockchain hackathon.",
-      date: "2024",
-      github: "https://github.com/phanikumar122/Decentralized-Oracle-Network"
-    },
-    {
-      id: 5,
-      title: "ABTalks Hackathon",
-      subtitle: "60-Day Coding Challenge Platform",
-      description: "ABTalks is a mobile-first 60-day coding challenge platform designed for college students to build consistently, ship real projects, and create visible proof of their progress. The redesigned experience uses a bold Neo-Brutalist UI to make daily challenges, coding streaks, achievements, and GitHub/LinkedIn submissions feel clear, tactile.",
-      date: "2025",
-      github: "https://github.com/phanikumar122/ABTalks_Hackathon",
-      live: "https://ab-talks-hackathon-five.vercel.app/"
     }
   ]
 };

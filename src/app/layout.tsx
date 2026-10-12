@@ -3,7 +3,6 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { DynamicMeta } from "@/components/ui/DynamicMeta";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
@@ -57,7 +56,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#09090B",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -66,14 +65,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${jakarta.variable} ${inter.variable} font-sans antialiased bg-bg text-text`}
       >
         <SmoothScroll>
           <DynamicMeta />
-          <CustomCursor />
           <ScrollProgress />
           <NoiseOverlay />
           {children}

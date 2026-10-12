@@ -42,20 +42,20 @@ export const LoadingScreen = () => {
               <span className="text-text">
                 Phani
               </span>
-              <span className="glow-text italic">
+              <span className="text-zinc-500 italic">
                 Kumar.
               </span>
             </motion.div>
 
             {/* Progress line */}
             <div
-              className="relative w-48 h-[2px] overflow-hidden bg-white/10 rounded-full"
+              className="relative w-48 h-[2px] overflow-hidden bg-zinc-200 rounded-full"
             >
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
                 transition={{ repeat: Infinity, duration: 1.1, ease: "easeInOut" }}
-                className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-primary to-accent"
+                className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-zinc-900 to-zinc-400"
               />
             </div>
 

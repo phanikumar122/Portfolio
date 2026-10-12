@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export const DynamicMeta = () => {
   useEffect(() => {
-    let originalTitle = document.title;
+    const originalTitle = document.title;
     let timeoutId: NodeJS.Timeout;
 
     const handleVisibilityChange = () => {

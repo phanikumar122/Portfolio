@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, Github, Linkedin, ExternalLink, Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Mail, Github, Linkedin, ExternalLink, Send, CheckCircle2, AlertCircle, MessageSquare } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const Contact = () => {
@@ -47,50 +47,61 @@ export const Contact = () => {
 
   const channels = [
     {
-      name: "Gmail",
+      name: "Direct Email",
       value: portfolioData.email,
       href: `mailto:${portfolioData.email}`,
-      description: "Send a direct message payload to my official inbox.",
+      description: "Direct line for internship opportunities, project collaborations, and inquiries.",
       actionText: "Send Email",
-      icon: <Mail className="w-5 h-5" />,
+      icon: <Mail className="w-4 h-4 text-[#791e94]" />,
+      bg: "bg-[#791e94]/15 border-[#791e94]/30",
     },
     {
-      name: "GitHub",
-      value: "phanikumar122",
+      name: "GitHub Profile",
+      value: "github.com/phanikumar122",
       href: portfolioData.github,
-      description: "Inspect source repositories, modules, and projects.",
-      actionText: "Explore Repos",
-      icon: <Github className="w-5 h-5" />,
+      description: "Explore all public repositories, open source contributions, and engineering experiments.",
+      actionText: "View Repositories",
+      icon: <Github className="w-4 h-4 text-[#407899]" />,
+      bg: "bg-[#407899]/15 border-[#407899]/30",
     },
     {
-      name: "LinkedIn",
-      value: "Phani Kumar",
+      name: "LinkedIn Network",
+      value: "linkedin.com/in/phani-kumar-999022375",
       href: portfolioData.linkedin,
-      description: "Establish professional connection on global networks.",
+      description: "Connect professionally and view academic history, recommendations, and updates.",
       actionText: "Connect Profile",
-      icon: <Linkedin className="w-5 h-5" />,
+      icon: <Linkedin className="w-4 h-4 text-[#167d6e]" />,
+      bg: "bg-[#41d3bd]/20 border-[#41d3bd]/40",
     },
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative">
+    <section id="contact" className="py-12 sm:py-16 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between pb-12 mb-12 gap-6 border-b border-white/10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between pb-6 mb-8 gap-4 border-b border-[#407899]/18">
             <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-text-muted block mb-3">Network</span>
-              <h2 className="font-display font-bold text-4xl sm:text-5xl text-text tracking-tight">
-                Get in Touch.
+              <div className="flex items-center gap-2 mb-3">
+                <span className="section-badge">
+                  <MessageSquare className="w-3.5 h-3.5 text-[#791e94]" />
+                  Get In Touch
+                </span>
+              </div>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-[#191424] tracking-tight">
+                Let&apos;s Build Together.
               </h2>
             </div>
+            <p className="text-sm sm:text-base text-[#4b6272] max-w-md font-light leading-relaxed">
+              Have an engineering opportunity, innovative product idea, or technical question? I&apos;d love to connect.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            {/* Left: Contact Channels (Bento layout) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+            {/* Left: Contact Channels (5 columns) */}
+            <div className="lg:col-span-5 flex flex-col gap-4">
               {channels.map((chan, idx) => (
                 <motion.a
                   key={chan.name}
@@ -100,140 +111,135 @@ export const Contact = () => {
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="bento-card p-6 flex flex-col justify-between group"
+                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+                  className="bento-card p-5 sm:p-6 flex flex-col justify-between group hover:border-[#791e94]/30 transition-all duration-300"
                 >
-                  <div className="bento-glow" />
-
-                  <div className="relative z-10">
-                    <div className="flex justify-between items-center text-[10px] font-mono text-text-muted uppercase pb-3 border-b border-white/10 mb-5 font-medium">
-                      <span>Gateway Secure</span>
-                      <span>{chan.name}</span>
-                    </div>
-
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-surface border border-white/10 text-text-muted group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-[#407899]/12">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-lg border flex items-center justify-center ${chan.bg}`}>
                         {chan.icon}
                       </div>
                       <div>
-                        <h3 className="text-lg font-display font-semibold text-text group-hover:text-white transition-colors">
+                        <h3 className="text-sm font-display font-semibold text-[#191424] group-hover:text-[#791e94] transition-colors">
                           {chan.name}
                         </h3>
-                        <span className="text-xs font-mono text-text-muted block mt-1 truncate max-w-[200px]">
+                        <span className="text-[11px] font-mono text-[#4b6272] block truncate max-w-[220px]">
                           {chan.value}
                         </span>
                       </div>
                     </div>
-
-                    <p className="font-sans text-sm text-text-muted leading-relaxed font-light mb-6">
-                      {chan.description}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center justify-end pt-4 mt-auto relative z-10">
-                    <span className="flex items-center gap-2 text-xs font-mono text-text-muted group-hover:text-white transition-colors uppercase font-medium">
-                      {chan.actionText} <ExternalLink className="w-3.5 h-3.5" />
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono text-[#407899] group-hover:text-[#791e94] group-hover:translate-x-0.5 transition-all">
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </span>
                   </div>
+
+                  <p className="font-sans text-xs text-[#4b6272] leading-relaxed font-normal">
+                    {chan.description}
+                  </p>
                 </motion.a>
               ))}
             </div>
 
-            {/* Right: Functional Contact Form (Bento layout) */}
+            {/* Right: Functional Contact Form (7 columns) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bento-card p-8 sm:p-10"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="lg:col-span-7 bento-card p-7 sm:p-9 flex flex-col justify-between"
             >
-              <h3 className="font-display font-bold text-2xl text-text mb-2 tracking-tight">
-                Send a Message
-              </h3>
-              <p className="font-sans text-sm text-text-muted mb-8 font-light">
-                Directly drop a message to my inbox. I typically respond within 24 hours.
-              </p>
-
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_KEY} />
-                
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="text-xs font-mono text-text-muted uppercase tracking-wider">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    placeholder="John Doe"
-                    className="w-full bg-bg border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/40 transition-colors"
-                  />
+              <div>
+                <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#407899]/15">
+                  <h3 className="font-display font-bold text-xl text-[#191424] tracking-tight">
+                    Send a Message
+                  </h3>
+                  <span className="text-[11px] font-mono text-[#4b6272]">
+                    Response time: &lt; 24h
+                  </span>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="text-xs font-mono text-text-muted uppercase tracking-wider">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="john@example.com"
-                    className="w-full bg-bg border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/40 transition-colors"
-                  />
-                </div>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_KEY} />
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="name" className="text-xs font-mono text-[#4b6272] font-medium">Your Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        placeholder="Alex Morgan"
+                        className="w-full bg-[#fffff2] border border-[#407899]/25 rounded-lg px-3.5 py-2.5 text-sm text-[#191424] placeholder-zinc-400 focus:bg-white focus:outline-none focus:border-[#791e94] focus:ring-1 focus:ring-[#791e94] transition-all font-normal"
+                      />
+                    </div>
 
-                <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className="text-xs font-mono text-text-muted uppercase tracking-wider">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    placeholder="How can we collaborate?"
-                    className="w-full bg-bg border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/40 transition-colors resize-none"
-                  />
-                </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="email" className="text-xs font-mono text-[#4b6272] font-medium">Your Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        placeholder="alex@company.com"
+                        className="w-full bg-[#fffff2] border border-[#407899]/25 rounded-lg px-3.5 py-2.5 text-sm text-[#191424] placeholder-zinc-400 focus:bg-white focus:outline-none focus:border-[#791e94] focus:ring-1 focus:ring-[#791e94] transition-all font-normal"
+                      />
+                    </div>
+                  </div>
 
-                {formState !== "error" ? (
-                  <button
-                    type="submit"
-                    disabled={formState === "loading" || formState === "success"}
-                    className="btn-primary w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  >
-                    {formState === "idle" && (
-                      <>Send Message <Send className="w-4 h-4" /></>
-                    )}
-                    {formState === "loading" && (
-                      <span className="flex items-center gap-2">
-                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                        Sending...
-                      </span>
-                    )}
-                    {formState === "success" && (
-                      <>Sent Successfully <CheckCircle2 className="w-4 h-4" /></>
-                    )}
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setFormState("idle")}
-                    className="btn-secondary w-full mt-2 flex items-center justify-center gap-2"
-                  >
-                    <AlertCircle className="w-4 h-4 text-red-400" /> Try Again
-                  </button>
-                )}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="message" className="text-xs font-mono text-[#4b6272] font-medium">Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      required
+                      rows={4}
+                      placeholder="Hi Phani, I'd like to discuss an opportunity..."
+                      className="w-full bg-[#fffff2] border border-[#407899]/25 rounded-lg px-3.5 py-2.5 text-sm text-[#191424] placeholder-zinc-400 focus:bg-white focus:outline-none focus:border-[#791e94] focus:ring-1 focus:ring-[#791e94] transition-all resize-none font-normal"
+                    />
+                  </div>
 
-                {/* Form status messages */}
-                {formState === "success" && (
-                  <p className="text-xs text-green-400 text-center mt-2 font-mono">
-                    ✓ Message delivered to inbox successfully.
-                  </p>
-                )}
-                {formState === "error" && (
-                  <p className="text-xs text-red-400 text-center mt-2 font-mono">
-                    ✗ Sending failed. Please try again or email directly.
-                  </p>
-                )}
-              </form>
+                  {formState !== "error" ? (
+                    <button
+                      type="submit"
+                      disabled={formState === "loading" || formState === "success"}
+                      className="btn-primary w-full mt-2 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm font-medium py-3"
+                    >
+                      {formState === "idle" && (
+                        <>Send Message <Send className="w-4 h-4 ml-1" /></>
+                      )}
+                      {formState === "loading" && (
+                        <span className="flex items-center gap-2">
+                          <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          Sending...
+                        </span>
+                      )}
+                      {formState === "success" && (
+                        <>Delivered Successfully <CheckCircle2 className="w-4 h-4 text-[#41d3bd]" /></>
+                      )}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setFormState("idle")}
+                      className="btn-secondary w-full mt-2 flex items-center justify-center gap-2 text-sm"
+                    >
+                      <AlertCircle className="w-4 h-4 text-[#de6449]" /> Error occurred · Try Again
+                    </button>
+                  )}
+
+                  {formState === "success" && (
+                    <p className="text-xs text-[#1a8575] text-center mt-2 font-mono">
+                      ✓ Your message was delivered straight to my inbox.
+                    </p>
+                  )}
+                  {formState === "error" && (
+                    <p className="text-xs text-[#de6449] text-center mt-2 font-mono">
+                      ✗ Failed to deliver. Please email directly at {portfolioData.email}
+                    </p>
+                  )}
+                </form>
+              </div>
             </motion.div>
 
           </div>
